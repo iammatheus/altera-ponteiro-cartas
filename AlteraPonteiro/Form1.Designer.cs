@@ -29,7 +29,7 @@ namespace AlteraPonteiro
         /// </summary>
         private void InitializeComponent()
         {
-            this.listaDeCartas = new System.Windows.Forms.ListBox();
+            this.lListaDeCartas = new System.Windows.Forms.ListBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.arquivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.abrirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -40,18 +40,19 @@ namespace AlteraPonteiro
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.lListaPonteiros = new System.Windows.Forms.ListBox();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // listaDeCartas
+            // lListaDeCartas
             // 
-            this.listaDeCartas.FormattingEnabled = true;
-            this.listaDeCartas.ItemHeight = 15;
-            this.listaDeCartas.Location = new System.Drawing.Point(12, 43);
-            this.listaDeCartas.Name = "listaDeCartas";
-            this.listaDeCartas.Size = new System.Drawing.Size(350, 379);
-            this.listaDeCartas.TabIndex = 0;
-            this.listaDeCartas.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
+            this.lListaDeCartas.FormattingEnabled = true;
+            this.lListaDeCartas.ItemHeight = 15;
+            this.lListaDeCartas.Location = new System.Drawing.Point(12, 43);
+            this.lListaDeCartas.Name = "lListaDeCartas";
+            this.lListaDeCartas.Size = new System.Drawing.Size(350, 379);
+            this.lListaDeCartas.TabIndex = 0;
+            this.lListaDeCartas.SelectedIndexChanged += new System.EventHandler(this.ListaDeCartas_SelectedIndexChanged);
             // 
             // menuStrip1
             // 
@@ -59,7 +60,7 @@ namespace AlteraPonteiro
             this.arquivoToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(800, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(881, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -98,7 +99,6 @@ namespace AlteraPonteiro
             this.tOffset.Name = "tOffset";
             this.tOffset.Size = new System.Drawing.Size(100, 23);
             this.tOffset.TabIndex = 2;
-            this.tOffset.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // tPonteiro
             // 
@@ -133,22 +133,32 @@ namespace AlteraPonteiro
             this.label3.Size = new System.Drawing.Size(0, 15);
             this.label3.TabIndex = 6;
             // 
+            // lListaPonteiros
+            // 
+            this.lListaPonteiros.FormattingEnabled = true;
+            this.lListaPonteiros.ItemHeight = 15;
+            this.lListaPonteiros.Location = new System.Drawing.Point(736, 43);
+            this.lListaPonteiros.Name = "lListaPonteiros";
+            this.lListaPonteiros.Size = new System.Drawing.Size(120, 379);
+            this.lListaPonteiros.TabIndex = 7;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(881, 450);
+            this.Controls.Add(this.lListaPonteiros);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.tPonteiro);
             this.Controls.Add(this.tOffset);
-            this.Controls.Add(this.listaDeCartas);
+            this.Controls.Add(this.lListaDeCartas);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = " Alterar Ponteiro de Carta";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -158,7 +168,7 @@ namespace AlteraPonteiro
 
         #endregion
 
-        private System.Windows.Forms.ListBox listaDeCartas;
+        private System.Windows.Forms.ListBox lListaDeCartas;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem arquivoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem abrirToolStripMenuItem;
@@ -169,6 +179,7 @@ namespace AlteraPonteiro
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ListBox lListaPonteiros;
     }
 }
 
