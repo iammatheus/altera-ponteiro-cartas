@@ -33,14 +33,14 @@ namespace AlteraPonteiro
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.arquivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.abrirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.salvarComoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.SalvarComoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sairToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tOffset = new System.Windows.Forms.TextBox();
             this.tPonteiro = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.lListaPonteiros = new System.Windows.Forms.ListBox();
+            this.BtnAlterarPonteiro = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -60,7 +60,7 @@ namespace AlteraPonteiro
             this.arquivoToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(881, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(740, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -68,7 +68,7 @@ namespace AlteraPonteiro
             // 
             this.arquivoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.abrirToolStripMenuItem,
-            this.salvarComoToolStripMenuItem,
+            this.SalvarComoToolStripMenuItem,
             this.sairToolStripMenuItem});
             this.arquivoToolStripMenuItem.Name = "arquivoToolStripMenuItem";
             this.arquivoToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
@@ -77,20 +77,21 @@ namespace AlteraPonteiro
             // abrirToolStripMenuItem
             // 
             this.abrirToolStripMenuItem.Name = "abrirToolStripMenuItem";
-            this.abrirToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.abrirToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.abrirToolStripMenuItem.Text = "&Abrir";
             this.abrirToolStripMenuItem.Click += new System.EventHandler(this.AbrirToolStripMenuItem_Click);
             // 
-            // salvarComoToolStripMenuItem
+            // SalvarComoToolStripMenuItem
             // 
-            this.salvarComoToolStripMenuItem.Name = "salvarComoToolStripMenuItem";
-            this.salvarComoToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
-            this.salvarComoToolStripMenuItem.Text = "&Salvar como...";
+            this.SalvarComoToolStripMenuItem.Name = "SalvarComoToolStripMenuItem";
+            this.SalvarComoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.SalvarComoToolStripMenuItem.Text = "&Salvar como...";
+            this.SalvarComoToolStripMenuItem.Click += new System.EventHandler(this.SalvarComoToolStripMenuItem_Click);
             // 
             // sairToolStripMenuItem
             // 
             this.sairToolStripMenuItem.Name = "sairToolStripMenuItem";
-            this.sairToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.sairToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.sairToolStripMenuItem.Text = "&Sair";
             // 
             // tOffset
@@ -133,22 +134,23 @@ namespace AlteraPonteiro
             this.label3.Size = new System.Drawing.Size(0, 15);
             this.label3.TabIndex = 6;
             // 
-            // lListaPonteiros
+            // BtnAlterarPonteiro
             // 
-            this.lListaPonteiros.FormattingEnabled = true;
-            this.lListaPonteiros.ItemHeight = 15;
-            this.lListaPonteiros.Location = new System.Drawing.Point(736, 43);
-            this.lListaPonteiros.Name = "lListaPonteiros";
-            this.lListaPonteiros.Size = new System.Drawing.Size(120, 379);
-            this.lListaPonteiros.TabIndex = 7;
+            this.BtnAlterarPonteiro.Location = new System.Drawing.Point(521, 308);
+            this.BtnAlterarPonteiro.Name = "BtnAlterarPonteiro";
+            this.BtnAlterarPonteiro.Size = new System.Drawing.Size(75, 23);
+            this.BtnAlterarPonteiro.TabIndex = 8;
+            this.BtnAlterarPonteiro.Text = "Alterar";
+            this.BtnAlterarPonteiro.UseVisualStyleBackColor = true;
+            this.BtnAlterarPonteiro.Click += new System.EventHandler(this.BtnAlterarPonteiro_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(881, 450);
-            this.Controls.Add(this.lListaPonteiros);
+            this.ClientSize = new System.Drawing.Size(740, 450);
+            this.Controls.Add(this.BtnAlterarPonteiro);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -159,6 +161,7 @@ namespace AlteraPonteiro
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.Text = " Alterar Ponteiro de Carta";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -172,14 +175,14 @@ namespace AlteraPonteiro
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem arquivoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem abrirToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem salvarComoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem SalvarComoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sairToolStripMenuItem;
         private System.Windows.Forms.TextBox tOffset;
         private System.Windows.Forms.TextBox tPonteiro;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ListBox lListaPonteiros;
+        private System.Windows.Forms.Button BtnAlterarPonteiro;
     }
 }
 

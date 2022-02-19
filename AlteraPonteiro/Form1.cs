@@ -1,12 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AlteraPonteiro
@@ -14,18 +7,18 @@ namespace AlteraPonteiro
     public partial class Form1 : Form
     {
         public OpenFileDialog dialog;
-        public string caminhoArquivo;
         public FileStream caminhoObtido;
         public FileStream caminhoObtidoPonteiro;
-        string[] ponteirosSeparados = new string[722];
+        public FileStream caminhoPonteiro;
+        public string caminhoArquivo;
         public string nomeCompleto = "";
         public string ponteiroCompleto = "";
         public string offsetCarta = "";
-        string hexPonteiros = "";
+        public string[] ponteirosSeparados = new string[722];
         public string[] listaNomeCartas = new string[] { null };
         public string[] listaPonteiros = new string[] { null };
         public string[] bytesPonteiros = new string[] { null };
-        string[,] tabelaDeCaracteres = new string[2, 80] {
+        public string[,] tabelaDeCaracteres = new string[2, 80] {
                 { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "0A", "0B", "0C", "0D", "0E", "0F", "10",
                   "11", "12", "13", "14", "15", "16", "17", "18", "19", "1A", "1B", "1C", "1D", "1E", "1F", "20", "21",
                   "22", "23", "24", "25", "26", "29", "2A", "2B", "2C", "2D", "2E", "2F", "30", "31", "32", "33", "34",
@@ -41,62 +34,32 @@ namespace AlteraPonteiro
         {
             InitializeComponent();
         }
-
         public string ObterOffsetCarta(int indexCartaSelecionada)
         {
             int offSetAtual = 0x1C6801;
-
             for (int i = 0; i < indexCartaSelecionada; i++)
             {
                 offSetAtual += listaNomeCartas[i].Length + 1;
             }
-
             return offSetAtual.ToString("X");
         }
-
-        public string ObterOffsetPonteiro()
+        public int ObterOffsetPonteiro()
         {
             int offSetAtual = 0x1C6002;
-            if (tPonteiro.Text != null)
+            for (int i = 0; i < lListaDeCartas.SelectedIndex; i++)
             {
-
-                if (lListaPonteiros.Items.Contains(tPonteiro.Text))
-                {
-                    lListaPonteiros.SelectedIndex = lListaDeCartas.SelectedIndex;
-
-                    for(int i = 0; i < lListaPonteiros.SelectedIndex; i++)
-                    {
-                        offSetAtual += 2;
-                    }
-                }
+                offSetAtual += 2;
             }
-
-            return offSetAtual.ToString("X");
+            return offSetAtual;
         }
-
-        public string ObterPonteiroCarta()
-        {
-            string quatroUlimosDigitosOffset = ObterOffsetCarta(lListaDeCartas.SelectedIndex).Substring(2, 4);
-            int quatroUlimosDigitosOffsetInt = Convert.ToInt32(quatroUlimosDigitosOffset, 16);
-            int resultadoConta = quatroUlimosDigitosOffsetInt - 0x800;
-
-            string primeiroByte = resultadoConta.ToString("X").Substring(0, 2);
-            string segundoByte = resultadoConta.ToString("X").Substring(2, 2);
-            string ponteiro = segundoByte + primeiroByte;
-
-            return ponteiro;
-        }
-
         private void ListaDeCartas_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (lListaDeCartas.SelectedItem != null)
             {
-                tPonteiro.Text = ObterPonteiroCarta();
                 tOffset.Text = ObterOffsetCarta(lListaDeCartas.SelectedIndex);
             }
-            ObterOffsetPonteiro();
+            tPonteiro.Text = ponteirosSeparados[lListaDeCartas.SelectedIndex].ToString();
         }
-
         private void AbrirToolStripMenuItem_Click(object sender, EventArgs e)
         {
             dialog = new OpenFileDialog();
@@ -147,10 +110,9 @@ namespace AlteraPonteiro
             }
             caminho.Close();
         }
-
         private void CapturarPonteiroCarta()
         {
-            FileStream caminhoPonteiro = new(caminhoArquivo, FileMode.OpenOrCreate);
+            caminhoPonteiro = new(caminhoArquivo, FileMode.OpenOrCreate);
             caminhoObtidoPonteiro = caminhoPonteiro;
             int tamanhoByte = 1444;
             byte[] espacosVazios = new byte[tamanhoByte];
@@ -160,37 +122,49 @@ namespace AlteraPonteiro
             {
                 string espacoAtual = BitConverter.ToString(espacosVazios);
                 string[] byteHexPonteiros = espacoAtual.Split("-");
-                
-                for (int b = 0; b < byteHexPonteiros.Length; b++)
-                {
-                    hexPonteiros += byteHexPonteiros[b];
-                }
-
                 int controle = 0;
 
                 for (int i = 0; i < 722; i++)
                 {
                     for (int j = 0; j < 2; j++)
                     {
-                        if(j > 0)
+                        if (j > 0)
                         {
                             controle += 1;
-                        }else if(controle > 0)
+                        }
+                        else if (controle > 0)
                         {
                             controle += 1;
                         }
                         ponteirosSeparados[i] += byteHexPonteiros[controle];
                     }
                 }
-
-                foreach(string element in ponteirosSeparados)
-                {
-                    lListaPonteiros.Items.Add(element);
-                }
-
                 break;
             }
-            caminhoPonteiro.Close();
+        }
+        private void SalvarComoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //Implementar função.
+        }
+        private static void AlterarPonteiroCarta(FileStream path, int offset, string firstValue, string secondValue)
+        {
+            path.Seek(offset, SeekOrigin.Begin);
+            path.WriteByte(Convert.ToByte(firstValue, 16));
+
+            path.Seek(offset+1, SeekOrigin.Begin);
+            path.WriteByte(Convert.ToByte(secondValue, 16));
+        }
+        private void BtnAlterarPonteiro_Click(object sender, EventArgs e)
+        {
+            string firstByte = tPonteiro.Text.Substring(0, 2);
+            string secondByte = tPonteiro.Text.Substring(2, 2);
+
+            AlterarPonteiroCarta(caminhoObtidoPonteiro, ObterOffsetPonteiro(), firstByte, secondByte);
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
