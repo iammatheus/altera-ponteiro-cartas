@@ -30,10 +30,23 @@ namespace AlteraPonteiro
                  "x","q","0","V","2","J","#","1","Q","Z","\u0022","3","5","&","/","7","X",":","4","6","$","*","+","8","9",
                  "%","[ENTER]", "."}
                 };
+
         public Form1()
         {
             InitializeComponent();
         }
+
+        private void MostraCamposForm()
+        {
+            lListaDeCartas.Visible = true;
+            lblMessageInfo.Visible = true;
+            lblOffset.Visible = true;
+            lblPonteiro.Visible = true;
+            BtnAlterarPonteiro.Visible = true;
+            txtOffset.Visible = true;
+            txtPonteiro.Visible = true;
+        }
+
         public string ObterOffsetCarta(int indexCartaSelecionada)
         {
             int offSetAtual = 0x1C6801;
@@ -43,6 +56,7 @@ namespace AlteraPonteiro
             }
             return offSetAtual.ToString("X");
         }
+
         public int ObterOffsetPonteiro()
         {
             int offSetAtual = 0x1C6002;
@@ -52,13 +66,15 @@ namespace AlteraPonteiro
             }
             return offSetAtual;
         }
+
         private void ListaDeCartas_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (lListaDeCartas.SelectedItem != null)
             {
-                tOffset.Text = ObterOffsetCarta(lListaDeCartas.SelectedIndex);
+                txtOffset.Text = ObterOffsetCarta(lListaDeCartas.SelectedIndex);
             }
-            tPonteiro.Text = ponteirosSeparados[lListaDeCartas.SelectedIndex].ToString();
+            txtPonteiro.Text = ponteirosSeparados[lListaDeCartas.SelectedIndex].ToString();
+            lblMessageInfo.Text = "";
         }
         private void AbrirToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -68,14 +84,22 @@ namespace AlteraPonteiro
                 caminhoArquivo = dialog.FileName;
                 CapturarNomeCarta();
                 CapturarPonteiroCarta();
+                MostraCamposForm();
             }
         }
+        private void MessageInfo(System.Drawing.Color color, string text)
+        {
+            lblMessageInfo.Text = text;
+            lblMessageInfo.ForeColor = color;
+        }
+
         private void CapturarNomeCarta()
         {
             FileStream caminho = new(caminhoArquivo, FileMode.OpenOrCreate);
             caminhoObtido = caminho;
             int tamanhoByte = 10956;
             byte[] espacosVazios = new byte[tamanhoByte];
+            int numeroCarta = 1;
 
             caminho.Seek(0x1C6801, SeekOrigin.Begin);
             while (caminho.Read(espacosVazios, 0, espacosVazios.Length) == tamanhoByte)
@@ -102,7 +126,8 @@ namespace AlteraPonteiro
 
                 foreach (string carta in listaNomeCartas)
                 {
-                    lListaDeCartas.Items.Add(carta);
+                    lListaDeCartas.Items.Add(numeroCarta.ToString().PadLeft(3, '0') + " - " + carta);
+                    numeroCarta++;
                 }
 
                 lListaDeCartas.Items.RemoveAt(722);
@@ -142,29 +167,40 @@ namespace AlteraPonteiro
                 break;
             }
         }
-        private void SalvarComoToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            //Implementar função.
-        }
+
         private static void AlterarPonteiroCarta(FileStream path, int offset, string firstValue, string secondValue)
         {
             path.Seek(offset, SeekOrigin.Begin);
             path.WriteByte(Convert.ToByte(firstValue, 16));
-
-            path.Seek(offset+1, SeekOrigin.Begin);
+            
+            path.Seek(offset + 1, SeekOrigin.Begin);
             path.WriteByte(Convert.ToByte(secondValue, 16));
+
+            path.Flush();
         }
+
         private void BtnAlterarPonteiro_Click(object sender, EventArgs e)
         {
-            string firstByte = tPonteiro.Text.Substring(0, 2);
-            string secondByte = tPonteiro.Text.Substring(2, 2);
+            try
+            {
+                string firstByte = txtPonteiro.Text.Substring(0, 2);
+                string secondByte = txtPonteiro.Text.Substring(2, 2);
 
-            AlterarPonteiroCarta(caminhoObtidoPonteiro, ObterOffsetPonteiro(), firstByte, secondByte);
+                if(firstByte != null && secondByte != null)
+                {
+                    AlterarPonteiroCarta(caminhoObtidoPonteiro, ObterOffsetPonteiro(), firstByte, secondByte);
+                    MessageInfo(System.Drawing.Color.LimeGreen, "Ponteiro alterado!");
+                }
+            }
+            catch(Exception)
+            {
+                MessageInfo(System.Drawing.Color.OrangeRed, "Não foi possível alterar o ponteiro, tente novamente!");
+            }
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void SairToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            Close();
         }
     }
 }

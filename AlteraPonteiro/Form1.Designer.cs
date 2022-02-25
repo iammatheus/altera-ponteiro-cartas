@@ -33,14 +33,14 @@ namespace AlteraPonteiro
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.arquivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.abrirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.SalvarComoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.sairToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tOffset = new System.Windows.Forms.TextBox();
-            this.tPonteiro = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.SairToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.txtOffset = new System.Windows.Forms.TextBox();
+            this.txtPonteiro = new System.Windows.Forms.TextBox();
+            this.lblOffset = new System.Windows.Forms.Label();
+            this.lblPonteiro = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.BtnAlterarPonteiro = new System.Windows.Forms.Button();
+            this.lblMessageInfo = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -52,6 +52,7 @@ namespace AlteraPonteiro
             this.lListaDeCartas.Name = "lListaDeCartas";
             this.lListaDeCartas.Size = new System.Drawing.Size(350, 379);
             this.lListaDeCartas.TabIndex = 0;
+            this.lListaDeCartas.Visible = false;
             this.lListaDeCartas.SelectedIndexChanged += new System.EventHandler(this.ListaDeCartas_SelectedIndexChanged);
             // 
             // menuStrip1
@@ -68,8 +69,7 @@ namespace AlteraPonteiro
             // 
             this.arquivoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.abrirToolStripMenuItem,
-            this.SalvarComoToolStripMenuItem,
-            this.sairToolStripMenuItem});
+            this.SairToolStripMenuItem});
             this.arquivoToolStripMenuItem.Name = "arquivoToolStripMenuItem";
             this.arquivoToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
             this.arquivoToolStripMenuItem.Text = "&Arquivo";
@@ -81,50 +81,49 @@ namespace AlteraPonteiro
             this.abrirToolStripMenuItem.Text = "&Abrir";
             this.abrirToolStripMenuItem.Click += new System.EventHandler(this.AbrirToolStripMenuItem_Click);
             // 
-            // SalvarComoToolStripMenuItem
+            // SairToolStripMenuItem
             // 
-            this.SalvarComoToolStripMenuItem.Name = "SalvarComoToolStripMenuItem";
-            this.SalvarComoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.SalvarComoToolStripMenuItem.Text = "&Salvar como...";
-            this.SalvarComoToolStripMenuItem.Click += new System.EventHandler(this.SalvarComoToolStripMenuItem_Click);
+            this.SairToolStripMenuItem.Name = "SairToolStripMenuItem";
+            this.SairToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.SairToolStripMenuItem.Text = "&Sair";
+            this.SairToolStripMenuItem.Click += new System.EventHandler(this.SairToolStripMenuItem_Click);
             // 
-            // sairToolStripMenuItem
+            // txtOffset
             // 
-            this.sairToolStripMenuItem.Name = "sairToolStripMenuItem";
-            this.sairToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.sairToolStripMenuItem.Text = "&Sair";
+            this.txtOffset.Location = new System.Drawing.Point(442, 230);
+            this.txtOffset.Name = "txtOffset";
+            this.txtOffset.ReadOnly = true;
+            this.txtOffset.Size = new System.Drawing.Size(100, 23);
+            this.txtOffset.TabIndex = 2;
+            this.txtOffset.Visible = false;
             // 
-            // tOffset
+            // txtPonteiro
             // 
-            this.tOffset.Location = new System.Drawing.Point(442, 230);
-            this.tOffset.Name = "tOffset";
-            this.tOffset.Size = new System.Drawing.Size(100, 23);
-            this.tOffset.TabIndex = 2;
+            this.txtPonteiro.Location = new System.Drawing.Point(585, 230);
+            this.txtPonteiro.Name = "txtPonteiro";
+            this.txtPonteiro.Size = new System.Drawing.Size(100, 23);
+            this.txtPonteiro.TabIndex = 3;
+            this.txtPonteiro.Visible = false;
             // 
-            // tPonteiro
+            // lblOffset
             // 
-            this.tPonteiro.Location = new System.Drawing.Point(585, 230);
-            this.tPonteiro.Name = "tPonteiro";
-            this.tPonteiro.Size = new System.Drawing.Size(100, 23);
-            this.tPonteiro.TabIndex = 3;
+            this.lblOffset.AutoSize = true;
+            this.lblOffset.Location = new System.Drawing.Point(442, 212);
+            this.lblOffset.Name = "lblOffset";
+            this.lblOffset.Size = new System.Drawing.Size(42, 15);
+            this.lblOffset.TabIndex = 4;
+            this.lblOffset.Text = "Offset:";
+            this.lblOffset.Visible = false;
             // 
-            // label1
+            // lblPonteiro
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(442, 212);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(42, 15);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "Offset:";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(585, 209);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(55, 15);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "Ponteiro:";
+            this.lblPonteiro.AutoSize = true;
+            this.lblPonteiro.Location = new System.Drawing.Point(585, 209);
+            this.lblPonteiro.Name = "lblPonteiro";
+            this.lblPonteiro.Size = new System.Drawing.Size(55, 15);
+            this.lblPonteiro.TabIndex = 5;
+            this.lblPonteiro.Text = "Ponteiro:";
+            this.lblPonteiro.Visible = false;
             // 
             // label3
             // 
@@ -142,7 +141,21 @@ namespace AlteraPonteiro
             this.BtnAlterarPonteiro.TabIndex = 8;
             this.BtnAlterarPonteiro.Text = "Alterar";
             this.BtnAlterarPonteiro.UseVisualStyleBackColor = true;
+            this.BtnAlterarPonteiro.Visible = false;
             this.BtnAlterarPonteiro.Click += new System.EventHandler(this.BtnAlterarPonteiro_Click);
+            // 
+            // lblMessageInfo
+            // 
+            this.lblMessageInfo.AutoSize = true;
+            this.lblMessageInfo.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblMessageInfo.ForeColor = System.Drawing.Color.LimeGreen;
+            this.lblMessageInfo.Location = new System.Drawing.Point(368, 347);
+            this.lblMessageInfo.MaximumSize = new System.Drawing.Size(373, 300);
+            this.lblMessageInfo.MinimumSize = new System.Drawing.Size(370, 50);
+            this.lblMessageInfo.Name = "lblMessageInfo";
+            this.lblMessageInfo.Size = new System.Drawing.Size(370, 50);
+            this.lblMessageInfo.TabIndex = 9;
+            this.lblMessageInfo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Form1
             // 
@@ -150,18 +163,19 @@ namespace AlteraPonteiro
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(740, 450);
+            this.Controls.Add(this.lblMessageInfo);
             this.Controls.Add(this.BtnAlterarPonteiro);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.tPonteiro);
-            this.Controls.Add(this.tOffset);
+            this.Controls.Add(this.lblPonteiro);
+            this.Controls.Add(this.lblOffset);
+            this.Controls.Add(this.txtPonteiro);
+            this.Controls.Add(this.txtOffset);
             this.Controls.Add(this.lListaDeCartas);
             this.Controls.Add(this.menuStrip1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.Text = " Alterar Ponteiro de Carta";
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -175,14 +189,14 @@ namespace AlteraPonteiro
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem arquivoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem abrirToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem SalvarComoToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem sairToolStripMenuItem;
-        private System.Windows.Forms.TextBox tOffset;
-        private System.Windows.Forms.TextBox tPonteiro;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ToolStripMenuItem SairToolStripMenuItem;
+        private System.Windows.Forms.TextBox txtOffset;
+        private System.Windows.Forms.TextBox txtPonteiro;
+        private System.Windows.Forms.Label lblOffset;
+        private System.Windows.Forms.Label lblPonteiro;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button BtnAlterarPonteiro;
+        private System.Windows.Forms.Label lblMessageInfo;
     }
 }
 
