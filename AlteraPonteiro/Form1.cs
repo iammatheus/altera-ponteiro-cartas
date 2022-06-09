@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
 
@@ -31,35 +32,81 @@ namespace AlteraPonteiro
                  "%","[ENTER]", "."}
                 };
 
+        public string[] codigoCores = new string[5] { "le", "ln", "li", "lt", "la" };
+        
+
         public Form1()
         {
             InitializeComponent();
         }
 
-        private void MostraCamposForm()
+        private void MostrarLista()
         {
+            lblTitleLista.Visible = true;
             lListaDeCartas.Visible = true;
-            lblMessageInfo.Visible = true;
-            lblOffset.Visible = true;
-            lblPonteiro.Visible = true;
-            BtnAlterarPonteiro.Visible = true;
-            txtOffset.Visible = true;
-            txtPonteiro.Visible = true;
+            backTitleLista.Visible = true;
+            backLeftLista.Visible = true;
+            backBottomLista.Visible = true;
+            borderRightLista.Visible = true;
+            borderTopLista.Visible = true;
+            borderBottomTitleLista.Visible = true;
         }
 
-        public string ObterOffsetCarta(int indexCartaSelecionada)
+        private void MostrarBuscarCarta()
         {
-            int offSetAtual = 0x1C6801;
+            lblTitleBuscar.Visible = true;
+            lblOffsetInicial.Visible = true;
+            lblOffsetFinal.Visible = true;
+            txtOffsetInicial.Visible = true;
+            txtOffsetFinal.Visible = true;
+            btnBuscar.Visible = true;
+        }
+
+        private void MostrarResultados()
+        {
+            lblTitleResultados.Visible = true;
+            lblOffset.Visible = true;
+            lblPonteiro.Visible = true;
+            lblPonteiroCalculado.Visible = true;
+            txtPonteiroCalculado.Visible = true;
+            txtOffset.Visible = true;
+            txtPonteiro.Visible = true;
+            BtnAlterarPonteiro.Visible = true;
+            lblMessageInfo.Visible = true;
+        }
+
+        public string ObterOffsetCarta(int indexCartaSelecionada, int offsetInicial)
+        {
+            int offSetAtual = offsetInicial;
+
             for (int i = 0; i < indexCartaSelecionada; i++)
             {
                 offSetAtual += listaNomeCartas[i].Length + 1;
+                for (int c = 0; c < codigoCores.Length; c++)
+                {
+                    if (listaNomeCartas[i].Substring(0, 2) == codigoCores[c])
+                    {
+                        offSetAtual++;
+                    }
+                }
             }
+            CalcularPonteiroCartaSelecionada(offSetAtual);
+
             return offSetAtual.ToString("X");
+        }
+
+        private void CalcularPonteiroCartaSelecionada(int offSetAtual)
+        {
+            var offsetAtual4UltimosDigitos = offSetAtual.ToString("X").Substring(2, 4);
+            var ponteiroCartaSelecionada = Convert.ToInt32(offsetAtual4UltimosDigitos, 16) - 2048;
+            var resultadoCalculado = ponteiroCartaSelecionada.ToString("X");
+            var ponteiroCalculado = resultadoCalculado.Substring(2, 2) + resultadoCalculado.Substring(0, 2);
+            txtPonteiroCalculado.Text = ponteiroCalculado;
         }
 
         public int ObterOffsetPonteiro()
         {
-            int offSetAtual = 0x1C6002;
+            int offSetAtual = 0x1C6002;//Criar variavel para pegar o ponteiro dinamicamente digitado pelo usuario na tela
             for (int i = 0; i < lListaDeCartas.SelectedIndex; i++)
             {
                 offSetAtual += 2;
@@ -71,7 +118,7 @@ namespace AlteraPonteiro
         {
             if (lListaDeCartas.SelectedItem != null)
             {
-                txtOffset.Text = ObterOffsetCarta(lListaDeCartas.SelectedIndex);
+                txtOffset.Text = ObterOffsetCarta(lListaDeCartas.SelectedIndex, Convert.ToInt32(txtOffsetInicial.Text, 16));
             }
             txtPonteiro.Text = ponteirosSeparados[lListaDeCartas.SelectedIndex].ToString();
             lblMessageInfo.Text = "";
@@ -82,9 +129,7 @@ namespace AlteraPonteiro
             if (DialogResult.OK == dialog.ShowDialog())
             {
                 caminhoArquivo = dialog.FileName;
-                CapturarNomeCarta();
-                CapturarPonteiroCarta();
-                MostraCamposForm();
+                MostrarBuscarCarta();
             }
         }
         private void MessageInfo(System.Drawing.Color color, string text)
@@ -93,15 +138,15 @@ namespace AlteraPonteiro
             lblMessageInfo.ForeColor = color;
         }
 
-        private void CapturarNomeCarta()
+        private void CapturarNomeCarta(int offsetInicial, int offsetFinal)
         {
             FileStream caminho = new(caminhoArquivo, FileMode.OpenOrCreate);
             caminhoObtido = caminho;
-            int tamanhoByte = 10956;
+            int tamanhoByte = offsetFinal;
             byte[] espacosVazios = new byte[tamanhoByte];
             int numeroCarta = 1;
 
-            caminho.Seek(0x1C6801, SeekOrigin.Begin);
+            caminho.Seek(offsetInicial, SeekOrigin.Begin);
             while (caminho.Read(espacosVazios, 0, espacosVazios.Length) == tamanhoByte)
             {
                 string espacoAtual = BitConverter.ToString(espacosVazios);
@@ -130,7 +175,7 @@ namespace AlteraPonteiro
                     numeroCarta++;
                 }
 
-                lListaDeCartas.Items.RemoveAt(722);
+                //lListaDeCartas.Items.RemoveAt(722);
                 break;
             }
             caminho.Close();
@@ -139,10 +184,10 @@ namespace AlteraPonteiro
         {
             caminhoPonteiro = new(caminhoArquivo, FileMode.OpenOrCreate);
             caminhoObtidoPonteiro = caminhoPonteiro;
-            int tamanhoByte = 1444;
+            int tamanhoByte = 1444;//Criar variavel para pegar o final do ponteiro dinamicamente digitado pelo usuario na tela
             byte[] espacosVazios = new byte[tamanhoByte];
 
-            caminhoPonteiro.Seek(0x1C6002, SeekOrigin.Begin);
+            caminhoPonteiro.Seek(0x1C6002, SeekOrigin.Begin);//Criar variavel para pegar o ponteiro dinamicamente digitado pelo usuario na tela
             while (caminhoPonteiro.Read(espacosVazios, 0, espacosVazios.Length) == tamanhoByte)
             {
                 string espacoAtual = BitConverter.ToString(espacosVazios);
@@ -166,6 +211,9 @@ namespace AlteraPonteiro
                 }
                 break;
             }
+            MostrarLista();
+            MostrarResultados();
+            caminhoPonteiro.Close();
         }
 
         private static void AlterarPonteiroCarta(FileStream path, int offset, string firstValue, string secondValue)
@@ -201,6 +249,17 @@ namespace AlteraPonteiro
         private void SairToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            var offsetInicial = txtOffsetInicial.Text;
+            var offsetFinal = txtOffsetFinal.Text;
+            var inicio = Convert.ToInt32(offsetInicial, 16);
+            var tamanho = Convert.ToInt32(offsetFinal, 16) - inicio;
+
+            CapturarNomeCarta(inicio, Math.Abs(tamanho));
+            CapturarPonteiroCarta();
         }
     }
 }
