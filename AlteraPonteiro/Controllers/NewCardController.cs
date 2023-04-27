@@ -5,15 +5,15 @@ using System.Windows.Forms;
 
 namespace AlteraPonteiro.Controllers
 {
-    public class CardController
+    public class NewCardController
     {
-        public CardService cardService = new();
+        public NewCardService cardService = new();
         public CardShared cardShared = new();
         public dynamic GetCardName(byte[] emptySpaces)
         {
             try
             {
-                var cards = cardService.GetCardName(emptySpaces);
+                var cards = cardService.GetNewCardName(emptySpaces);
                 if (cards == null) return "Nenhuma carta encontrada.";
 
                 return cards;
@@ -28,7 +28,7 @@ namespace AlteraPonteiro.Controllers
         {
             try
             {
-                var cardsList = cardService.FillInCardNameList(iListCardsName, cards);
+                var cardsList = cardService.FillInNewCardNameList(iListCardsName, cards);
                 if (cards == null) return "Lista de cartas vazia.";
 
                 return cardsList;

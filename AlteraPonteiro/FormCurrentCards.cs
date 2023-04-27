@@ -8,15 +8,19 @@ namespace AlteraPonteiro
 {
     public partial class FormCurrentCards : Form
     {
-        public readonly CardController offsetCardController = new();
+        public readonly CardController cardController = new();
+        public readonly NewCardController newCardController = new();
         public readonly PointerController pointerController = new();
 
         public OpenFileDialog dialog;
         public FileStream pathObtained;
+        public FileStream pathObtainedNew;
         public string filePath;
         public string calculatedPointer;
+        public string calculatedPointerNewCard;
         public string[] ponteirosSeparados = new string[722];
-        public string[] cardListName = new string[] { null };
+        public string[] listCardName = new string[] { null };
+        public string[] listNewCardName = new string[] { null };
 
         public FormCurrentCards()
         {
@@ -133,18 +137,40 @@ namespace AlteraPonteiro
         {
             for (int i = 0; i < indexCartaSelecionada; i++)
             {
-                offsetInicial += cardListName[i].Length + 1;
+                offsetInicial += listCardName[i].Length + 1;
                 for (int c = 0; c < Settings.ColorCode.Length; c++)
                 {
-                    if (cardListName[i].Substring(0, 2) == Settings.ColorCode[c])
+                    if (listCardName[i].Substring(0, 2) == Settings.ColorCode[c])
                     {
                         offsetInicial++;
                     }
                 }
             }
 
-            calculatedPointer = offsetCardController.GetCalculateSelectedCardPointer(offsetInicial);
+            calculatedPointer = cardController.GetCalculateSelectedCardPointer(offsetInicial);
             txtPonteiroCalculado.Text = calculatedPointer;
+
+            return offsetInicial.ToString("X");
+        }
+
+
+        // TESTE 
+        private string ObterOffsetCartaNova(int indexCartaSelecionada, int offsetInicial)
+        {
+            for (int i = 0; i < indexCartaSelecionada; i++)
+            {
+                offsetInicial += listNewCardName[i].Length + 1;
+                for (int c = 0; c < Settings.ColorCode.Length; c++)
+                {
+                    if (listNewCardName[i].Substring(0, 2) == Settings.ColorCode[c])
+                    {
+                        offsetInicial++;
+                    }
+                }
+            }
+
+            calculatedPointerNewCard = newCardController.GetCalculateSelectedCardPointer(offsetInicial);
+            txtPointerNewCard.Text = calculatedPointer;
 
             return offsetInicial.ToString("X");
         }
@@ -196,9 +222,29 @@ namespace AlteraPonteiro
 
             while (caminho.Read(emptySpaces, 0, emptySpaces.Length) == sizeBytes)
             {
-                IList cards = offsetCardController.GetNameCard(emptySpaces);
+                IList cards = cardController.GetCardName(emptySpaces);
 
-                cardListName = offsetCardController.FillInCardNameList(lListaDeCartas, cards);
+                listCardName = cardController.FillInCardNameList(lListaDeCartas, cards);
+                break;
+            }
+            caminho.Close();
+        }
+
+        //teste
+        private void CapturarNomeCartaNova(int offsetInicial, int offsetFinal)
+        {
+            FileStream caminho = new(filePath, FileMode.OpenOrCreate);
+            pathObtainedNew = caminho;
+            int sizeBytes = offsetFinal;
+            byte[] emptySpaces = new byte[sizeBytes];
+
+            caminho.Seek(offsetInicial, SeekOrigin.Begin);
+
+            while (caminho.Read(emptySpaces, 0, emptySpaces.Length) == sizeBytes)
+            {
+                IList cards = newCardController.GetCardName(emptySpaces);
+
+                listNewCardName = newCardController.FillInCardNameList(lListNewCards, cards);
                 break;
             }
             caminho.Close();
@@ -228,16 +274,29 @@ namespace AlteraPonteiro
         //    path.Flush();
         //}
 
+        public void SearchCards()
+        {
+            var offsetInicial = txtOffsetInicial.Text;
+            var offsetFinal = txtOffsetFinal.Text;
+
+            var inicio = Convert.ToInt32(offsetInicial, 16);
+            var tamanho = Convert.ToInt32(offsetFinal, 16) - inicio;
+            CapturarNomeCarta(inicio, Math.Abs(tamanho));
+        }
+        public void SearchNewCards()
+        {
+            var startOffsetNewCard = txtInitialOffsetNewCard.Text;
+            var lastOffsetNewCard = txtLastOffsetNewCard.Text;
+
+            var start = Convert.ToInt32(startOffsetNewCard, 16);
+            var size = Convert.ToInt32(lastOffsetNewCard, 16) - start;
+            CapturarNomeCartaNova(start, Math.Abs(size));
+        }
 
         private void BtnBuscar_Click(object sender, EventArgs e)
         {
-            //Cartas
-            var offsetInicial = txtOffsetInicial.Text;
-            var offsetFinal = txtOffsetFinal.Text;
-            var inicio = Convert.ToInt32(offsetInicial, 16);
-            var tamanho = Convert.ToInt32(offsetFinal, 16) - inicio;
-
-            CapturarNomeCarta(inicio, Math.Abs(tamanho));
+            SearchCards();
+            SearchNewCards();
             CapturarPonteiroCarta();
         }
 
@@ -249,6 +308,24 @@ namespace AlteraPonteiro
             {
                 filePath = dialog.FileName;
                 MostrarBuscarCarta();
+            }
+        }
+
+        private void ListNewCards_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            lblMessageInfo.Text = "";
+
+            try
+            {
+                if (lListNewCards.SelectedItem != null)
+                {
+                    txtOffsetNewCard.Text = ObterOffsetCartaNova(lListNewCards.SelectedIndex, Convert.ToInt32(txtInitialOffsetNewCard.Text, 16));
+                    txtPointerNewCard.Text = calculatedPointerNewCard;
+                }
+            }
+            catch (Exception)
+            {
+                return;
             }
         }
         // ----- Fim -----

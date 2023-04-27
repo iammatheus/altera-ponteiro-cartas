@@ -298,7 +298,7 @@ namespace AlteraPonteiro
             this.txtOffsetFinal.Name = "txtOffsetFinal";
             this.txtOffsetFinal.Size = new System.Drawing.Size(83, 23);
             this.txtOffsetFinal.TabIndex = 15;
-            this.txtOffsetFinal.Text = "1C92CA";
+            this.txtOffsetFinal.Text = "1C92CB";
             this.txtOffsetFinal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtOffsetFinal.Visible = false;
             this.txtOffsetFinal.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValidaCamposHexadecimal);
@@ -571,6 +571,7 @@ namespace AlteraPonteiro
             this.lListNewCards.Size = new System.Drawing.Size(337, 450);
             this.lListNewCards.TabIndex = 35;
             this.lListNewCards.Visible = false;
+            this.lListNewCards.SelectedIndexChanged += new System.EventHandler(this.ListNewCards_SelectedIndexChanged);
             // 
             // textBox8
             // 
@@ -623,6 +624,7 @@ namespace AlteraPonteiro
             this.txtLastOffsetNewCard.Name = "txtLastOffsetNewCard";
             this.txtLastOffsetNewCard.Size = new System.Drawing.Size(83, 23);
             this.txtLastOffsetNewCard.TabIndex = 48;
+            this.txtLastOffsetNewCard.Text = "1C99B1";
             this.txtLastOffsetNewCard.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtLastOffsetNewCard.Visible = false;
             // 
@@ -657,6 +659,7 @@ namespace AlteraPonteiro
             this.txtInitialOffsetNewCard.Name = "txtInitialOffsetNewCard";
             this.txtInitialOffsetNewCard.Size = new System.Drawing.Size(83, 23);
             this.txtInitialOffsetNewCard.TabIndex = 45;
+            this.txtInitialOffsetNewCard.Text = "1C9991";
             this.txtInitialOffsetNewCard.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtInitialOffsetNewCard.Visible = false;
             // 
