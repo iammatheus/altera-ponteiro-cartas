@@ -32,11 +32,6 @@ namespace AlteraPonteiro
         private void InitializeComponent()
         {
             this.lListaDeCartas = new System.Windows.Forms.ListBox();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.arquivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.abrirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.SairToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.AboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.txtOffset = new System.Windows.Forms.TextBox();
             this.txtPonteiro = new System.Windows.Forms.TextBox();
             this.lblOffset = new System.Windows.Forms.Label();
@@ -73,17 +68,22 @@ namespace AlteraPonteiro
             this.lListNewCards = new System.Windows.Forms.ListBox();
             this.textBox8 = new System.Windows.Forms.TextBox();
             this.lblTitleNewCard = new System.Windows.Forms.Label();
-            this.btnSearchNewCard = new System.Windows.Forms.Button();
+            this.BtnSearchNewCard = new System.Windows.Forms.Button();
             this.txtLastOffsetNewCard = new System.Windows.Forms.TextBox();
             this.lblLastOffsetNewCard = new System.Windows.Forms.Label();
-            this.lblInitialOffsetNewCard = new System.Windows.Forms.Label();
-            this.txtInitialOffsetNewCard = new System.Windows.Forms.TextBox();
+            this.lblStartOffsetNewCard = new System.Windows.Forms.Label();
+            this.txtStartOffsetNewCard = new System.Windows.Forms.TextBox();
             this.lblResultNewCard = new System.Windows.Forms.Label();
             this.lblPointerCard = new System.Windows.Forms.Label();
             this.txtPointerNewCard = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.lblOffsetNewCard = new System.Windows.Forms.Label();
             this.txtOffsetNewCard = new System.Windows.Forms.TextBox();
+            this.arquivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.abrirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.SairToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.AboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -101,48 +101,6 @@ namespace AlteraPonteiro
             this.lListaDeCartas.TabIndex = 0;
             this.lListaDeCartas.Visible = false;
             this.lListaDeCartas.SelectedIndexChanged += new System.EventHandler(this.ListaDeCartas_SelectedIndexChanged);
-            // 
-            // menuStrip1
-            // 
-            this.menuStrip1.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.arquivoToolStripMenuItem,
-            this.AboutToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1377, 24);
-            this.menuStrip1.TabIndex = 1;
-            this.menuStrip1.Text = "menuStrip1";
-            // 
-            // arquivoToolStripMenuItem
-            // 
-            this.arquivoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.abrirToolStripMenuItem,
-            this.SairToolStripMenuItem});
-            this.arquivoToolStripMenuItem.Name = "arquivoToolStripMenuItem";
-            this.arquivoToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
-            this.arquivoToolStripMenuItem.Text = "&Arquivo";
-            // 
-            // abrirToolStripMenuItem
-            // 
-            this.abrirToolStripMenuItem.Name = "abrirToolStripMenuItem";
-            this.abrirToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
-            this.abrirToolStripMenuItem.Text = "&Abrir";
-            this.abrirToolStripMenuItem.Click += new System.EventHandler(this.AbrirToolStripMenuItem_Click);
-            // 
-            // SairToolStripMenuItem
-            // 
-            this.SairToolStripMenuItem.Name = "SairToolStripMenuItem";
-            this.SairToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
-            this.SairToolStripMenuItem.Text = "&Sair";
-            this.SairToolStripMenuItem.Click += new System.EventHandler(this.SairToolStripMenuItem_Click);
-            // 
-            // AboutToolStripMenuItem
-            // 
-            this.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem";
-            this.AboutToolStripMenuItem.Size = new System.Drawing.Size(49, 20);
-            this.AboutToolStripMenuItem.Text = "&Sobre";
-            this.AboutToolStripMenuItem.Click += new System.EventHandler(this.AboutToolStripMenuItem_Click);
             // 
             // txtOffset
             // 
@@ -598,22 +556,23 @@ namespace AlteraPonteiro
             this.lblTitleNewCard.Text = "Buscar cartas novas";
             this.lblTitleNewCard.Visible = false;
             // 
-            // btnSearchNewCard
+            // BtnSearchNewCard
             // 
-            this.btnSearchNewCard.BackColor = System.Drawing.Color.LightGreen;
-            this.btnSearchNewCard.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSearchNewCard.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnSearchNewCard.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LimeGreen;
-            this.btnSearchNewCard.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSearchNewCard.Font = new System.Drawing.Font("Roboto", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnSearchNewCard.Location = new System.Drawing.Point(907, 147);
-            this.btnSearchNewCard.Margin = new System.Windows.Forms.Padding(0);
-            this.btnSearchNewCard.Name = "btnSearchNewCard";
-            this.btnSearchNewCard.Size = new System.Drawing.Size(105, 29);
-            this.btnSearchNewCard.TabIndex = 49;
-            this.btnSearchNewCard.Text = "Ok";
-            this.btnSearchNewCard.UseVisualStyleBackColor = false;
-            this.btnSearchNewCard.Visible = false;
+            this.BtnSearchNewCard.BackColor = System.Drawing.Color.LightGreen;
+            this.BtnSearchNewCard.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnSearchNewCard.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray;
+            this.BtnSearchNewCard.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LimeGreen;
+            this.BtnSearchNewCard.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnSearchNewCard.Font = new System.Drawing.Font("Roboto", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.BtnSearchNewCard.Location = new System.Drawing.Point(907, 147);
+            this.BtnSearchNewCard.Margin = new System.Windows.Forms.Padding(0);
+            this.BtnSearchNewCard.Name = "BtnSearchNewCard";
+            this.BtnSearchNewCard.Size = new System.Drawing.Size(105, 29);
+            this.BtnSearchNewCard.TabIndex = 49;
+            this.BtnSearchNewCard.Text = "Trocar";
+            this.BtnSearchNewCard.UseVisualStyleBackColor = false;
+            this.BtnSearchNewCard.Visible = false;
+            this.BtnSearchNewCard.Click += new System.EventHandler(this.BtnSearchNewCard_Click);
             // 
             // txtLastOffsetNewCard
             // 
@@ -639,29 +598,29 @@ namespace AlteraPonteiro
             this.lblLastOffsetNewCard.Text = "Offset final:";
             this.lblLastOffsetNewCard.Visible = false;
             // 
-            // lblInitialOffsetNewCard
+            // lblStartOffsetNewCard
             // 
-            this.lblInitialOffsetNewCard.AutoSize = true;
-            this.lblInitialOffsetNewCard.Font = new System.Drawing.Font("Roboto", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblInitialOffsetNewCard.Location = new System.Drawing.Point(830, 83);
-            this.lblInitialOffsetNewCard.Name = "lblInitialOffsetNewCard";
-            this.lblInitialOffsetNewCard.Size = new System.Drawing.Size(98, 18);
-            this.lblInitialOffsetNewCard.TabIndex = 46;
-            this.lblInitialOffsetNewCard.Text = "Offset inicial:";
-            this.lblInitialOffsetNewCard.Visible = false;
+            this.lblStartOffsetNewCard.AutoSize = true;
+            this.lblStartOffsetNewCard.Font = new System.Drawing.Font("Roboto", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblStartOffsetNewCard.Location = new System.Drawing.Point(830, 83);
+            this.lblStartOffsetNewCard.Name = "lblStartOffsetNewCard";
+            this.lblStartOffsetNewCard.Size = new System.Drawing.Size(98, 18);
+            this.lblStartOffsetNewCard.TabIndex = 46;
+            this.lblStartOffsetNewCard.Text = "Offset inicial:";
+            this.lblStartOffsetNewCard.Visible = false;
             // 
-            // txtInitialOffsetNewCard
+            // txtStartOffsetNewCard
             // 
-            this.txtInitialOffsetNewCard.Font = new System.Drawing.Font("Roboto", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtInitialOffsetNewCard.Location = new System.Drawing.Point(929, 80);
-            this.txtInitialOffsetNewCard.MaxLength = 6;
-            this.txtInitialOffsetNewCard.Multiline = true;
-            this.txtInitialOffsetNewCard.Name = "txtInitialOffsetNewCard";
-            this.txtInitialOffsetNewCard.Size = new System.Drawing.Size(83, 23);
-            this.txtInitialOffsetNewCard.TabIndex = 45;
-            this.txtInitialOffsetNewCard.Text = "1C9991";
-            this.txtInitialOffsetNewCard.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtInitialOffsetNewCard.Visible = false;
+            this.txtStartOffsetNewCard.Font = new System.Drawing.Font("Roboto", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtStartOffsetNewCard.Location = new System.Drawing.Point(929, 80);
+            this.txtStartOffsetNewCard.MaxLength = 6;
+            this.txtStartOffsetNewCard.Multiline = true;
+            this.txtStartOffsetNewCard.Name = "txtStartOffsetNewCard";
+            this.txtStartOffsetNewCard.Size = new System.Drawing.Size(83, 23);
+            this.txtStartOffsetNewCard.TabIndex = 45;
+            this.txtStartOffsetNewCard.Text = "1C9991";
+            this.txtStartOffsetNewCard.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtStartOffsetNewCard.Visible = false;
             // 
             // lblResultNewCard
             // 
@@ -730,6 +689,48 @@ namespace AlteraPonteiro
             this.txtOffsetNewCard.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtOffsetNewCard.Visible = false;
             // 
+            // arquivoToolStripMenuItem
+            // 
+            this.arquivoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.abrirToolStripMenuItem,
+            this.SairToolStripMenuItem});
+            this.arquivoToolStripMenuItem.Name = "arquivoToolStripMenuItem";
+            this.arquivoToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
+            this.arquivoToolStripMenuItem.Text = "&Arquivo";
+            // 
+            // abrirToolStripMenuItem
+            // 
+            this.abrirToolStripMenuItem.Name = "abrirToolStripMenuItem";
+            this.abrirToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.abrirToolStripMenuItem.Text = "&Abrir";
+            this.abrirToolStripMenuItem.Click += new System.EventHandler(this.AbrirToolStripMenuItem_Click);
+            // 
+            // SairToolStripMenuItem
+            // 
+            this.SairToolStripMenuItem.Name = "SairToolStripMenuItem";
+            this.SairToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.SairToolStripMenuItem.Text = "&Sair";
+            this.SairToolStripMenuItem.Click += new System.EventHandler(this.SairToolStripMenuItem_Click);
+            // 
+            // AboutToolStripMenuItem
+            // 
+            this.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem";
+            this.AboutToolStripMenuItem.Size = new System.Drawing.Size(49, 20);
+            this.AboutToolStripMenuItem.Text = "&Sobre";
+            this.AboutToolStripMenuItem.Click += new System.EventHandler(this.AboutToolStripMenuItem_Click);
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.arquivoToolStripMenuItem,
+            this.AboutToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(1377, 24);
+            this.menuStrip1.TabIndex = 1;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
             // FormCurrentCards
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -743,11 +744,11 @@ namespace AlteraPonteiro
             this.Controls.Add(this.lblOffsetNewCard);
             this.Controls.Add(this.txtOffsetNewCard);
             this.Controls.Add(this.lblTitleNewCard);
-            this.Controls.Add(this.btnSearchNewCard);
+            this.Controls.Add(this.BtnSearchNewCard);
             this.Controls.Add(this.txtLastOffsetNewCard);
             this.Controls.Add(this.lblLastOffsetNewCard);
-            this.Controls.Add(this.lblInitialOffsetNewCard);
-            this.Controls.Add(this.txtInitialOffsetNewCard);
+            this.Controls.Add(this.lblStartOffsetNewCard);
+            this.Controls.Add(this.txtStartOffsetNewCard);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox3);
@@ -796,45 +797,34 @@ namespace AlteraPonteiro
             this.PerformLayout();
 
         }
-
-        private void BtnAlterarPonteiro_Click(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
         #endregion
 
-        private System.Windows.Forms.ListBox lListaDeCartas;
-        private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem arquivoToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem abrirToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem SairToolStripMenuItem;
-        private System.Windows.Forms.TextBox txtOffset;
-        private System.Windows.Forms.TextBox txtPonteiro;
-        private System.Windows.Forms.Label lblOffset;
-        private System.Windows.Forms.Label lblPonteiro;
+        public System.Windows.Forms.ListBox lListaDeCartas;
+        public System.Windows.Forms.TextBox txtOffset;
+        public System.Windows.Forms.TextBox txtPonteiro;
+        public System.Windows.Forms.Label lblOffset;
+        public System.Windows.Forms.Label lblPonteiro;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button BtnAlterarPonteiro;
-        private System.Windows.Forms.Label lblMessageInfo;
-        private System.Windows.Forms.TextBox txtPonteiroCalculado;
-        private System.Windows.Forms.Label lblPonteiroCalculado;
-        private System.Windows.Forms.TextBox txtOffsetInicial;
-        private System.Windows.Forms.Label lblOffsetInicial;
-        private System.Windows.Forms.Label lblOffsetFinal;
-        private System.Windows.Forms.TextBox txtOffsetFinal;
-        private System.Windows.Forms.Label lblTitleLista;
-        private System.Windows.Forms.TextBox backLeftLista;
-        private System.Windows.Forms.TextBox backBottomLista;
-        private System.Windows.Forms.TextBox borderRightLista;
-        private System.Windows.Forms.TextBox borderTopLista;
-        private System.Windows.Forms.TextBox backTitleLista;
-        private System.Windows.Forms.TextBox borderBottomTitleLista;
-        private System.Windows.Forms.TextBox backTopScroll;
-        private System.Windows.Forms.Label lblTitleBuscar;
-        private System.Windows.Forms.Label lblTitleResultados;
-        private System.Windows.Forms.ToolStripMenuItem AboutToolStripMenuItem;
-        private System.Windows.Forms.TextBox backBottomScroll;
-        private System.Windows.Forms.Button BtnBuscar;
+        public System.Windows.Forms.Button BtnAlterarPonteiro;
+        public System.Windows.Forms.Label lblMessageInfo;
+        public System.Windows.Forms.TextBox txtPonteiroCalculado;
+        public System.Windows.Forms.Label lblPonteiroCalculado;
+        public System.Windows.Forms.TextBox txtOffsetInicial;
+        public System.Windows.Forms.Label lblOffsetInicial;
+        public System.Windows.Forms.Label lblOffsetFinal;
+        public System.Windows.Forms.TextBox txtOffsetFinal;
+        public System.Windows.Forms.Label lblTitleLista;
+        public System.Windows.Forms.TextBox backLeftLista;
+        public System.Windows.Forms.TextBox backBottomLista;
+        public System.Windows.Forms.TextBox borderRightLista;
+        public System.Windows.Forms.TextBox borderTopLista;
+        public System.Windows.Forms.TextBox backTitleLista;
+        public System.Windows.Forms.TextBox borderBottomTitleLista;
+        public System.Windows.Forms.TextBox backTopScroll;
+        public System.Windows.Forms.Label lblTitleBuscar;
+        public System.Windows.Forms.Label lblTitleResultados;
+        public System.Windows.Forms.TextBox backBottomScroll;
+        public System.Windows.Forms.Button BtnBuscar;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox3;
@@ -842,21 +832,26 @@ namespace AlteraPonteiro
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.TextBox textBox6;
         private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.Label lblNewCards;
-        private System.Windows.Forms.ListBox lListNewCards;
+        public System.Windows.Forms.Label lblNewCards;
+        public System.Windows.Forms.ListBox lListNewCards;
         private System.Windows.Forms.TextBox textBox8;
-        private System.Windows.Forms.Label lblTitleNewCard;
-        private System.Windows.Forms.Button btnSearchNewCard;
-        private System.Windows.Forms.TextBox txtLastOffsetNewCard;
-        private System.Windows.Forms.Label lblLastOffsetNewCard;
-        private System.Windows.Forms.Label lblInitialOffsetNewCard;
-        private System.Windows.Forms.TextBox txtInitialOffsetNewCard;
-        private System.Windows.Forms.Label lblResultNewCard;
-        private System.Windows.Forms.Label lblPointerCard;
-        private System.Windows.Forms.TextBox txtPointerNewCard;
+        public System.Windows.Forms.Label lblTitleNewCard;
+        public System.Windows.Forms.Button BtnSearchNewCard;
+        public System.Windows.Forms.TextBox txtLastOffsetNewCard;
+        public System.Windows.Forms.Label lblLastOffsetNewCard;
+        public System.Windows.Forms.Label lblStartOffsetNewCard;
+        public System.Windows.Forms.TextBox txtStartOffsetNewCard;
+        public System.Windows.Forms.Label lblResultNewCard;
+        public System.Windows.Forms.Label lblPointerCard;
+        public System.Windows.Forms.TextBox txtPointerNewCard;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label lblOffsetNewCard;
-        private System.Windows.Forms.TextBox txtOffsetNewCard;
+        public System.Windows.Forms.Label lblOffsetNewCard;
+        public System.Windows.Forms.TextBox txtOffsetNewCard;
+        private System.Windows.Forms.ToolStripMenuItem arquivoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem abrirToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem SairToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem AboutToolStripMenuItem;
+        private System.Windows.Forms.MenuStrip menuStrip1;
     }
 }
 

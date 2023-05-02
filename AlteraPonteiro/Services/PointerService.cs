@@ -10,18 +10,16 @@ namespace AlteraPonteiro.Services
         public FileStream pointerPath;
         public FileStream pointerPathObtained;
         public PointerModel pointerModel = new();
-
+        public int startOffsetPointer = 1859586; // hex: 1C6002
+        public int lastOffsetPointer = 1444; // hex: 1C65A6
         public dynamic GetPointer(string archivePath)
         {
-            int initialOffsetPointer = 1859586; // hex: 1C6002
-            int lastOffsetPointer = 1444; // hex: 1C65A6
-
             pointerPath = new(archivePath, FileMode.OpenOrCreate);
             pointerPathObtained = pointerPath;
             int byteSize = lastOffsetPointer;
             byte[] emptySpaces = new byte[byteSize];
 
-            pointerPath.Seek(initialOffsetPointer, SeekOrigin.Begin);
+            pointerPath.Seek(startOffsetPointer, SeekOrigin.Begin);
             while (pointerPath.Read(emptySpaces, 0, emptySpaces.Length) == byteSize)
             {
                 string currentSpace = BitConverter.ToString(emptySpaces);
@@ -46,14 +44,25 @@ namespace AlteraPonteiro.Services
             return pointerModel.GroupPointers;
         }
 
-        public dynamic GetOffsetPointerCard(string initialOffsetPointer, ListBox listaDeCartas)
+        public int GetOffsetPointerCard(ListBox listaDeCartas)
         {
-            int currentOffset = Convert.ToInt32(initialOffsetPointer, 16);
+            int currentOffset = Convert.ToInt32("1C6002", 16);
             for (int i = 0; i < listaDeCartas.SelectedIndex; i++)
             {
                 currentOffset += 2;
             }
             return currentOffset;
+        }
+
+        public void ChangePointerCard(int offset, string firstValue, string secondValue)
+        {
+            pointerPathObtained.Seek(offset, SeekOrigin.Begin);
+            pointerPathObtained.WriteByte(Convert.ToByte(firstValue, 16));
+
+            pointerPathObtained.Seek(offset + 1, SeekOrigin.Begin);
+            pointerPathObtained.WriteByte(Convert.ToByte(secondValue, 16));
+
+            pointerPathObtained.Flush();
         }
     }
 }
