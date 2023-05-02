@@ -11,6 +11,7 @@ namespace AlteraPonteiro
         public readonly CardController cardController = new();
         public readonly NewCardController newCardController = new();
         public readonly PointerController pointerController = new();
+        public Settings settings = new();
 
         public OpenFileDialog dialog;
         public FileStream pathObtained;
@@ -37,9 +38,17 @@ namespace AlteraPonteiro
             Close();
         }
 
-        // 
-        // Funções Gerais
-        // 
+        private void AbrirToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            dialog = new OpenFileDialog();
+
+            if (DialogResult.OK == dialog.ShowDialog())
+            {
+                filePath = dialog.FileName;
+                MostrarBuscarCarta();
+            }
+        }
+
         private void ValidaBotaoOk(object sender, KeyEventArgs e)
         {
             //Função que habilita o botão Ok caso os campos estejam preenchidos.
@@ -64,6 +73,7 @@ namespace AlteraPonteiro
             lblMessageInfo.Text = text;
             lblMessageInfo.ForeColor = color;
         }
+
         private void MostrarLista()
         {
             lblTitleLista.Visible = true;
@@ -97,11 +107,11 @@ namespace AlteraPonteiro
 
             // NEW CARDS
             lblTitleNewCard.Visible = true;
-            lblInitialOffsetNewCard.Visible = true;
+            lblStartOffsetNewCard.Visible = true;
             lblLastOffsetNewCard.Visible = true;
-            txtInitialOffsetNewCard.Visible = true;
+            txtStartOffsetNewCard.Visible = true;
             txtLastOffsetNewCard.Visible = true;
-            btnSearchNewCard.Visible = true;
+            BtnSearchNewCard.Visible = true;
 
             BtnBuscar.Visible = true;
         }
@@ -125,12 +135,6 @@ namespace AlteraPonteiro
             txtOffsetNewCard.Visible = true;
             txtPointerNewCard.Visible = true;
         }
-        // ----- Fim -----
-
-        //
-        // Funções para obter Ponteiros e Cartas / Offsets / Lista
-        //
-
 
         //REFATORADO
         private string ObterOffsetCarta(int indexCartaSelecionada, int offsetInicial)
@@ -153,9 +157,8 @@ namespace AlteraPonteiro
             return offsetInicial.ToString("X");
         }
 
-
-        // TESTE 
-        private string ObterOffsetCartaNova(int indexCartaSelecionada, int offsetInicial)
+        // Obter offset da lista de cartas novas.
+        private string GetOfssetNewCard(int indexCartaSelecionada, int offsetInicial)
         {
             for (int i = 0; i < indexCartaSelecionada; i++)
             {
@@ -194,8 +197,13 @@ namespace AlteraPonteiro
                         if (calculatedPointer == ponteirosSeparados[i])
                         {
                             txtPonteiro.Text = ponteirosSeparados[i];
-                            return;
                         }
+                        else
+                        {
+                            txtPonteiro.Text = ponteirosSeparados[lListaDeCartas.SelectedIndex];
+                            
+                        }
+                        return;
                     }
                 }
                 else
@@ -258,34 +266,19 @@ namespace AlteraPonteiro
             MostrarLista();
             MostrarResultados();
         }
-        // ----- Fim -----
 
-        //
-        // Funções dos botões - Alterar ponteiro / Buscar cartas e ponteiros
-        //
-        //private static void AlterarPonteiroCarta(FileStream path, int offset, string firstValue, string secondValue)
-        //{
-        //    path.Seek(offset, SeekOrigin.Begin);
-        //    path.WriteByte(Convert.ToByte(firstValue, 16));
-            
-        //    path.Seek(offset + 1, SeekOrigin.Begin);
-        //    path.WriteByte(Convert.ToByte(secondValue, 16));
-
-        //    path.Flush();
-        //}
-
-        public void SearchCards()
+        public void SearchCurrentCards()
         {
-            var offsetInicial = txtOffsetInicial.Text;
-            var offsetFinal = txtOffsetFinal.Text;
+            var startOffset = txtOffsetInicial.Text;
+            var lastOffset = txtOffsetFinal.Text;
 
-            var inicio = Convert.ToInt32(offsetInicial, 16);
-            var tamanho = Convert.ToInt32(offsetFinal, 16) - inicio;
-            CapturarNomeCarta(inicio, Math.Abs(tamanho));
+            var start = Convert.ToInt32(startOffset, 16);
+            var size = Convert.ToInt32(lastOffset, 16) - start;
+            CapturarNomeCarta(start, Math.Abs(size));
         }
         public void SearchNewCards()
         {
-            var startOffsetNewCard = txtInitialOffsetNewCard.Text;
+            var startOffsetNewCard = txtStartOffsetNewCard.Text;
             var lastOffsetNewCard = txtLastOffsetNewCard.Text;
 
             var start = Convert.ToInt32(startOffsetNewCard, 16);
@@ -295,20 +288,9 @@ namespace AlteraPonteiro
 
         private void BtnBuscar_Click(object sender, EventArgs e)
         {
-            SearchCards();
+            SearchCurrentCards();
             SearchNewCards();
             CapturarPonteiroCarta();
-        }
-
-        private void AbrirToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            dialog = new OpenFileDialog();
-
-            if (DialogResult.OK == dialog.ShowDialog())
-            {
-                filePath = dialog.FileName;
-                MostrarBuscarCarta();
-            }
         }
 
         private void ListNewCards_SelectedIndexChanged(object sender, EventArgs e)
@@ -319,7 +301,7 @@ namespace AlteraPonteiro
             {
                 if (lListNewCards.SelectedItem != null)
                 {
-                    txtOffsetNewCard.Text = ObterOffsetCartaNova(lListNewCards.SelectedIndex, Convert.ToInt32(txtInitialOffsetNewCard.Text, 16));
+                    txtOffsetNewCard.Text = GetOfssetNewCard(lListNewCards.SelectedIndex, Convert.ToInt32(txtStartOffsetNewCard.Text, 16));
                     txtPointerNewCard.Text = calculatedPointerNewCard;
                 }
             }
@@ -327,6 +309,32 @@ namespace AlteraPonteiro
             {
                 return;
             }
+        }
+
+        private void BtnAlterarPonteiro_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string firstByte = txtPonteiro.Text.Substring(0, 2);
+                string secondByte = txtPonteiro.Text.Substring(2, 2);
+
+                int offset = pointerController.GetOffsetPointerCard(lListaDeCartas);
+
+                pointerController.ChangePointerCard(offset, firstByte, secondByte);
+                ponteirosSeparados[lListaDeCartas.SelectedIndex] = firstByte + secondByte;
+
+                MessageInfo(System.Drawing.Color.LimeGreen, $"Ponteiro alterado!");
+            }
+            catch
+            {
+                MessageInfo(System.Drawing.Color.OrangeRed, $"Não foi possível alterar o ponteiro, tente novamente!");
+            }
+        }
+
+        private void BtnSearchNewCard_Click(object sender, EventArgs e)
+        {
+            txtPonteiro.Text = txtPointerNewCard.Text;
+            MessageInfo(System.Drawing.Color.LimeGreen, $"Ponteiro substituído!");
         }
         // ----- Fim -----
     }

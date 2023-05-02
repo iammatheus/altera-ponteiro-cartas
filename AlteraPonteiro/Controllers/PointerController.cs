@@ -20,11 +20,11 @@ namespace AlteraPonteiro.Controllers
                 return "Erro ao obter ponteiros.";
             }
         }
-        public dynamic GetOffsetPointerCard(string initialOffsetPointer, ListBox listaDeCartas)
+        public dynamic GetOffsetPointerCard(ListBox listaDeCartas)
         {
             try
             {
-                int? currentOffsetPointer = pointerService.GetOffsetPointerCard(initialOffsetPointer, listaDeCartas);
+                int? currentOffsetPointer = pointerService.GetOffsetPointerCard(listaDeCartas);
                 if (currentOffsetPointer == null) return "Offset não encontrado.";
 
                 return currentOffsetPointer;
@@ -33,6 +33,11 @@ namespace AlteraPonteiro.Controllers
             {
                 return "Erro ao obter offset do ponteiro.";
             }
+        }
+
+        public void ChangePointerCard(int offset, string firstValue, string secondValue)
+        {
+            pointerService.ChangePointerCard(offset, firstValue, secondValue);
         }
     }
 }
