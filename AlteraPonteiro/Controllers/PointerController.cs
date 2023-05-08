@@ -11,27 +11,27 @@ namespace AlteraPonteiro.Controllers
             try
             {
                 string[] pointers = pointerService.GetPointer(archivePath);
-                if (pointers == null) return "Nenhum ponteiro obtido.";
+                if (pointers == null) return "No found pointer.";
 
                 return pointers;
             }
             catch
             {
-                return "Erro ao obter ponteiros.";
+                return "Error getting pointers.";
             }
         }
-        public dynamic GetOffsetPointerCard(ListBox listaDeCartas)
+        public dynamic GetOffsetPointerCard(ListView listaDeCartas)
         {
             try
             {
                 int? currentOffsetPointer = pointerService.GetOffsetPointerCard(listaDeCartas);
-                if (currentOffsetPointer == null) return "Offset não encontrado.";
+                if (currentOffsetPointer == null) return "No found offset.";
 
                 return currentOffsetPointer;
             }
             catch
             {
-                return "Erro ao obter offset do ponteiro.";
+                return "Error getting pointer offset.";
             }
         }
 
