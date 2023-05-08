@@ -12,7 +12,7 @@ namespace AlteraPonteiro.Services
 
         public string[] GetNewCardName(byte[] emptySpaces)
         {
-            newCardModel.ListNewCardName = cardShared.GetName(emptySpaces, newCardModel.NewCardFullName, newCardModel.ListNewCardName);
+            newCardModel.ListNewCardName = cardShared.GetCardName(emptySpaces, newCardModel.NewCardFullName, newCardModel.ListNewCardName);
             return newCardModel.ListNewCardName;
         }
         public string[] FillInNewCardNameList(ListBox iListCardsName, IList cards)

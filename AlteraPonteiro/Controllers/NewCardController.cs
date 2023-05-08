@@ -14,13 +14,13 @@ namespace AlteraPonteiro.Controllers
             try
             {
                 var cards = cardService.GetNewCardName(emptySpaces);
-                if (cards == null) return "Nenhuma carta encontrada.";
+                if (cards == null) return "No card found.";
 
                 return cards;
             }
             catch
             {
-                return "Erro ao obter nome das cartas.";
+                return "Error getting card name.";
             }
         }
 
@@ -29,13 +29,13 @@ namespace AlteraPonteiro.Controllers
             try
             {
                 var cardsList = cardService.FillInNewCardNameList(iListCardsName, cards);
-                if (cards == null) return "Lista de cartas vazia.";
+                if (cards == null) return "List of empty card.";
 
                 return cardsList;
             }
             catch
             {
-                return "Erro ao retornar lista de cartas";
+                return "Error returning card list.";
             }
         }
         public dynamic GetCalculateSelectedCardPointer(int currentOffset)
@@ -47,7 +47,7 @@ namespace AlteraPonteiro.Controllers
             }
             catch
             {
-                return "Erro ao retornar lista de cartas";
+                return "Error returning calculated pointer.";
             }
         }
     }

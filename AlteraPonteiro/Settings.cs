@@ -17,7 +17,7 @@
             }
         };
 
-        public static string[] ColorCode = new string[5] { "le", "ln", "li", "lt", "la" };
+        public static string[] ColorCode = new string[5] { "le", "ln", "li", "lt", "la" }; //ln = red, etc... 
         public const string HexLetters = "0123456789abcdefABCDEF\u0003\u0016\b";
     }
 }

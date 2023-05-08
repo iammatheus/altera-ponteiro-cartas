@@ -12,6 +12,8 @@ namespace AlteraPonteiro.Services
         public PointerModel pointerModel = new();
         public int startOffsetPointer = 1859586; // hex: 1C6002
         public int lastOffsetPointer = 1444; // hex: 1C65A6
+
+        //Obtém os ponteiros de todas as 722 cartas do jogo.
         public dynamic GetPointer(string archivePath)
         {
             pointerPath = new(archivePath, FileMode.OpenOrCreate);
@@ -44,16 +46,18 @@ namespace AlteraPonteiro.Services
             return pointerModel.GroupPointers;
         }
 
-        public int GetOffsetPointerCard(ListBox listaDeCartas)
+        //Obtém o offset do ponteiro da carta selecionada.
+        public int GetOffsetPointerCard(ListView listaDeCartas)
         {
             int currentOffset = Convert.ToInt32("1C6002", 16);
-            for (int i = 0; i < listaDeCartas.SelectedIndex; i++)
+            for (int i = 0; i < listaDeCartas.SelectedIndices[0]; i++)
             {
                 currentOffset += 2;
             }
             return currentOffset;
         }
 
+        //Altera o ponteiro da carta, padão 2bytes = 0160.
         public void ChangePointerCard(int offset, string firstValue, string secondValue)
         {
             pointerPathObtained.Seek(offset, SeekOrigin.Begin);

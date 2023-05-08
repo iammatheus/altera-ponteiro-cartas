@@ -1,5 +1,6 @@
 ﻿
 using System;
+using System.Windows.Forms;
 
 namespace AlteraPonteiro
 {
@@ -31,32 +32,22 @@ namespace AlteraPonteiro
         /// </summary>
         private void InitializeComponent()
         {
-            this.lListaDeCartas = new System.Windows.Forms.ListBox();
-            this.txtOffset = new System.Windows.Forms.TextBox();
-            this.txtPonteiro = new System.Windows.Forms.TextBox();
-            this.lblOffset = new System.Windows.Forms.Label();
-            this.lblPonteiro = new System.Windows.Forms.Label();
+            this.TxtOffset = new System.Windows.Forms.TextBox();
+            this.TxtCurrentPointer = new System.Windows.Forms.TextBox();
+            this.LblOffset = new System.Windows.Forms.Label();
+            this.LblCurrentPointer = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.BtnAlterarPonteiro = new System.Windows.Forms.Button();
+            this.BtnChangePointer = new System.Windows.Forms.Button();
             this.lblMessageInfo = new System.Windows.Forms.Label();
-            this.txtPonteiroCalculado = new System.Windows.Forms.TextBox();
-            this.lblPonteiroCalculado = new System.Windows.Forms.Label();
-            this.txtOffsetInicial = new System.Windows.Forms.TextBox();
-            this.lblOffsetInicial = new System.Windows.Forms.Label();
-            this.lblOffsetFinal = new System.Windows.Forms.Label();
-            this.txtOffsetFinal = new System.Windows.Forms.TextBox();
-            this.lblTitleLista = new System.Windows.Forms.Label();
-            this.backLeftLista = new System.Windows.Forms.TextBox();
-            this.backBottomLista = new System.Windows.Forms.TextBox();
-            this.borderRightLista = new System.Windows.Forms.TextBox();
-            this.borderTopLista = new System.Windows.Forms.TextBox();
-            this.backTitleLista = new System.Windows.Forms.TextBox();
-            this.borderBottomTitleLista = new System.Windows.Forms.TextBox();
-            this.backTopScroll = new System.Windows.Forms.TextBox();
-            this.lblTitleBuscar = new System.Windows.Forms.Label();
-            this.lblTitleResultados = new System.Windows.Forms.Label();
-            this.backBottomScroll = new System.Windows.Forms.TextBox();
-            this.BtnBuscar = new System.Windows.Forms.Button();
+            this.TxtCalculatedPointer = new System.Windows.Forms.TextBox();
+            this.LblCalculatedPointer = new System.Windows.Forms.Label();
+            this.TxtStartOffset = new System.Windows.Forms.TextBox();
+            this.LblStartOffset = new System.Windows.Forms.Label();
+            this.LblLastOffset = new System.Windows.Forms.Label();
+            this.TxtLastOffset = new System.Windows.Forms.TextBox();
+            this.LblTitleSearchCards = new System.Windows.Forms.Label();
+            this.lblResultTitle = new System.Windows.Forms.Label();
+            this.BtnSearchCards = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
@@ -67,87 +58,75 @@ namespace AlteraPonteiro
             this.lblNewCards = new System.Windows.Forms.Label();
             this.lListNewCards = new System.Windows.Forms.ListBox();
             this.textBox8 = new System.Windows.Forms.TextBox();
-            this.lblTitleNewCard = new System.Windows.Forms.Label();
+            this.LblTitleNewCard = new System.Windows.Forms.Label();
             this.BtnSearchNewCard = new System.Windows.Forms.Button();
-            this.txtLastOffsetNewCard = new System.Windows.Forms.TextBox();
-            this.lblLastOffsetNewCard = new System.Windows.Forms.Label();
-            this.lblStartOffsetNewCard = new System.Windows.Forms.Label();
-            this.txtStartOffsetNewCard = new System.Windows.Forms.TextBox();
-            this.lblResultNewCard = new System.Windows.Forms.Label();
-            this.lblPointerCard = new System.Windows.Forms.Label();
-            this.txtPointerNewCard = new System.Windows.Forms.TextBox();
+            this.TxtLastOffsetNewCard = new System.Windows.Forms.TextBox();
+            this.LblLastOffsetNewCard = new System.Windows.Forms.Label();
+            this.LblStartOffsetNewCard = new System.Windows.Forms.Label();
+            this.TxtStartOffsetNewCard = new System.Windows.Forms.TextBox();
+            this.LblResultNewCard = new System.Windows.Forms.Label();
+            this.LblPointerCard = new System.Windows.Forms.Label();
+            this.TxtPointerNewCard = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.lblOffsetNewCard = new System.Windows.Forms.Label();
-            this.txtOffsetNewCard = new System.Windows.Forms.TextBox();
+            this.LblOffsetNewCard = new System.Windows.Forms.Label();
+            this.TxtOffsetNewCard = new System.Windows.Forms.TextBox();
             this.arquivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.abrirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SairToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.lListCardsView = new System.Windows.Forms.ListView();
+            this.id = new System.Windows.Forms.ColumnHeader();
+            this.Name = new System.Windows.Forms.ColumnHeader();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // lListaDeCartas
+            // TxtOffset
             // 
-            this.lListaDeCartas.BackColor = System.Drawing.SystemColors.Window;
-            this.lListaDeCartas.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.lListaDeCartas.Font = new System.Drawing.Font("Roboto", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lListaDeCartas.FormattingEnabled = true;
-            this.lListaDeCartas.ItemHeight = 18;
-            this.lListaDeCartas.Location = new System.Drawing.Point(11, 97);
-            this.lListaDeCartas.Name = "lListaDeCartas";
-            this.lListaDeCartas.ScrollAlwaysVisible = true;
-            this.lListaDeCartas.Size = new System.Drawing.Size(337, 450);
-            this.lListaDeCartas.TabIndex = 0;
-            this.lListaDeCartas.Visible = false;
-            this.lListaDeCartas.SelectedIndexChanged += new System.EventHandler(this.ListaDeCartas_SelectedIndexChanged);
+            this.TxtOffset.Font = new System.Drawing.Font("Roboto", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.TxtOffset.Location = new System.Drawing.Point(516, 331);
+            this.TxtOffset.Multiline = true;
+            this.TxtOffset.Name = "TxtOffset";
+            this.TxtOffset.ReadOnly = true;
+            this.TxtOffset.Size = new System.Drawing.Size(83, 23);
+            this.TxtOffset.TabIndex = 2;
+            this.TxtOffset.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.TxtOffset.Visible = false;
             // 
-            // txtOffset
+            // TxtCurrentPointer
             // 
-            this.txtOffset.Font = new System.Drawing.Font("Roboto", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtOffset.Location = new System.Drawing.Point(516, 331);
-            this.txtOffset.Multiline = true;
-            this.txtOffset.Name = "txtOffset";
-            this.txtOffset.ReadOnly = true;
-            this.txtOffset.Size = new System.Drawing.Size(83, 23);
-            this.txtOffset.TabIndex = 2;
-            this.txtOffset.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtOffset.Visible = false;
+            this.TxtCurrentPointer.Font = new System.Drawing.Font("Roboto", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.TxtCurrentPointer.Location = new System.Drawing.Point(516, 389);
+            this.TxtCurrentPointer.MaxLength = 4;
+            this.TxtCurrentPointer.Multiline = true;
+            this.TxtCurrentPointer.Name = "TxtCurrentPointer";
+            this.TxtCurrentPointer.Size = new System.Drawing.Size(83, 23);
+            this.TxtCurrentPointer.TabIndex = 3;
+            this.TxtCurrentPointer.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.TxtCurrentPointer.Visible = false;
+            this.TxtCurrentPointer.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValidatesHexFields);
             // 
-            // txtPonteiro
+            // LblOffset
             // 
-            this.txtPonteiro.Font = new System.Drawing.Font("Roboto", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtPonteiro.Location = new System.Drawing.Point(516, 389);
-            this.txtPonteiro.MaxLength = 4;
-            this.txtPonteiro.Multiline = true;
-            this.txtPonteiro.Name = "txtPonteiro";
-            this.txtPonteiro.Size = new System.Drawing.Size(83, 23);
-            this.txtPonteiro.TabIndex = 3;
-            this.txtPonteiro.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtPonteiro.Visible = false;
-            this.txtPonteiro.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValidaCamposHexadecimal);
+            this.LblOffset.AutoSize = true;
+            this.LblOffset.Font = new System.Drawing.Font("Roboto", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.LblOffset.Location = new System.Drawing.Point(380, 334);
+            this.LblOffset.Name = "LblOffset";
+            this.LblOffset.Size = new System.Drawing.Size(83, 18);
+            this.LblOffset.TabIndex = 4;
+            this.LblOffset.Text = "Card offset";
+            this.LblOffset.Visible = false;
             // 
-            // lblOffset
+            // LblCurrentPointer
             // 
-            this.lblOffset.AutoSize = true;
-            this.lblOffset.Font = new System.Drawing.Font("Roboto", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblOffset.Location = new System.Drawing.Point(383, 334);
-            this.lblOffset.Name = "lblOffset";
-            this.lblOffset.Size = new System.Drawing.Size(112, 18);
-            this.lblOffset.TabIndex = 4;
-            this.lblOffset.Text = "Offset da carta:";
-            this.lblOffset.Visible = false;
-            // 
-            // lblPonteiro
-            // 
-            this.lblPonteiro.AutoSize = true;
-            this.lblPonteiro.Font = new System.Drawing.Font("Roboto", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblPonteiro.Location = new System.Drawing.Point(383, 392);
-            this.lblPonteiro.Name = "lblPonteiro";
-            this.lblPonteiro.Size = new System.Drawing.Size(109, 18);
-            this.lblPonteiro.TabIndex = 5;
-            this.lblPonteiro.Text = "Ponteiro atual:";
-            this.lblPonteiro.Visible = false;
+            this.LblCurrentPointer.AutoSize = true;
+            this.LblCurrentPointer.Font = new System.Drawing.Font("Roboto", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.LblCurrentPointer.Location = new System.Drawing.Point(380, 392);
+            this.LblCurrentPointer.Name = "LblCurrentPointer";
+            this.LblCurrentPointer.Size = new System.Drawing.Size(111, 18);
+            this.LblCurrentPointer.TabIndex = 5;
+            this.LblCurrentPointer.Text = "Current pointer";
+            this.LblCurrentPointer.Visible = false;
             // 
             // label3
             // 
@@ -157,21 +136,22 @@ namespace AlteraPonteiro
             this.label3.Size = new System.Drawing.Size(0, 15);
             this.label3.TabIndex = 6;
             // 
-            // BtnAlterarPonteiro
+            // BtnChangePointer
             // 
-            this.BtnAlterarPonteiro.BackColor = System.Drawing.Color.LightGreen;
-            this.BtnAlterarPonteiro.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray;
-            this.BtnAlterarPonteiro.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LimeGreen;
-            this.BtnAlterarPonteiro.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnAlterarPonteiro.Font = new System.Drawing.Font("Roboto", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.BtnAlterarPonteiro.Location = new System.Drawing.Point(494, 426);
-            this.BtnAlterarPonteiro.Name = "BtnAlterarPonteiro";
-            this.BtnAlterarPonteiro.Size = new System.Drawing.Size(105, 30);
-            this.BtnAlterarPonteiro.TabIndex = 8;
-            this.BtnAlterarPonteiro.Text = "Alterar";
-            this.BtnAlterarPonteiro.UseVisualStyleBackColor = false;
-            this.BtnAlterarPonteiro.Visible = false;
-            this.BtnAlterarPonteiro.Click += new System.EventHandler(this.BtnAlterarPonteiro_Click);
+            this.BtnChangePointer.BackColor = System.Drawing.Color.LightGreen;
+            this.BtnChangePointer.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnChangePointer.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray;
+            this.BtnChangePointer.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LimeGreen;
+            this.BtnChangePointer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnChangePointer.Font = new System.Drawing.Font("Roboto", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.BtnChangePointer.Location = new System.Drawing.Point(494, 426);
+            this.BtnChangePointer.Name = "BtnChangePointer";
+            this.BtnChangePointer.Size = new System.Drawing.Size(105, 30);
+            this.BtnChangePointer.TabIndex = 8;
+            this.BtnChangePointer.Text = "Change";
+            this.BtnChangePointer.UseVisualStyleBackColor = false;
+            this.BtnChangePointer.Visible = false;
+            this.BtnChangePointer.Click += new System.EventHandler(this.BtnChangePointer_Click);
             // 
             // lblMessageInfo
             // 
@@ -185,236 +165,122 @@ namespace AlteraPonteiro
             this.lblMessageInfo.TabIndex = 9;
             this.lblMessageInfo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // txtPonteiroCalculado
+            // TxtCalculatedPointer
             // 
-            this.txtPonteiroCalculado.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtPonteiroCalculado.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtPonteiroCalculado.Font = new System.Drawing.Font("Roboto", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtPonteiroCalculado.Location = new System.Drawing.Point(516, 360);
-            this.txtPonteiroCalculado.Multiline = true;
-            this.txtPonteiroCalculado.Name = "txtPonteiroCalculado";
-            this.txtPonteiroCalculado.ReadOnly = true;
-            this.txtPonteiroCalculado.Size = new System.Drawing.Size(83, 23);
-            this.txtPonteiroCalculado.TabIndex = 10;
-            this.txtPonteiroCalculado.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtPonteiroCalculado.Visible = false;
+            this.TxtCalculatedPointer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.TxtCalculatedPointer.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.TxtCalculatedPointer.Font = new System.Drawing.Font("Roboto", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.TxtCalculatedPointer.Location = new System.Drawing.Point(516, 360);
+            this.TxtCalculatedPointer.Multiline = true;
+            this.TxtCalculatedPointer.Name = "TxtCalculatedPointer";
+            this.TxtCalculatedPointer.ReadOnly = true;
+            this.TxtCalculatedPointer.Size = new System.Drawing.Size(83, 23);
+            this.TxtCalculatedPointer.TabIndex = 10;
+            this.TxtCalculatedPointer.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.TxtCalculatedPointer.Visible = false;
             // 
-            // lblPonteiroCalculado
+            // LblCalculatedPointer
             // 
-            this.lblPonteiroCalculado.AutoSize = true;
-            this.lblPonteiroCalculado.Font = new System.Drawing.Font("Roboto", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblPonteiroCalculado.Location = new System.Drawing.Point(383, 362);
-            this.lblPonteiroCalculado.Name = "lblPonteiroCalculado";
-            this.lblPonteiroCalculado.Size = new System.Drawing.Size(130, 18);
-            this.lblPonteiroCalculado.TabIndex = 11;
-            this.lblPonteiroCalculado.Text = "Ponteiro da carta:";
-            this.lblPonteiroCalculado.Visible = false;
+            this.LblCalculatedPointer.AutoSize = true;
+            this.LblCalculatedPointer.Font = new System.Drawing.Font("Roboto", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.LblCalculatedPointer.Location = new System.Drawing.Point(380, 362);
+            this.LblCalculatedPointer.Name = "LblCalculatedPointer";
+            this.LblCalculatedPointer.Size = new System.Drawing.Size(133, 18);
+            this.LblCalculatedPointer.TabIndex = 11;
+            this.LblCalculatedPointer.Text = "Calculated pointer";
+            this.LblCalculatedPointer.Visible = false;
             // 
-            // txtOffsetInicial
+            // TxtStartOffset
             // 
-            this.txtOffsetInicial.Font = new System.Drawing.Font("Roboto", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtOffsetInicial.Location = new System.Drawing.Point(482, 77);
-            this.txtOffsetInicial.MaxLength = 6;
-            this.txtOffsetInicial.Multiline = true;
-            this.txtOffsetInicial.Name = "txtOffsetInicial";
-            this.txtOffsetInicial.Size = new System.Drawing.Size(83, 23);
-            this.txtOffsetInicial.TabIndex = 12;
-            this.txtOffsetInicial.Text = "1C66D0";
-            this.txtOffsetInicial.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtOffsetInicial.Visible = false;
-            this.txtOffsetInicial.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValidaCamposHexadecimal);
-            this.txtOffsetInicial.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ValidaBotaoOk);
+            this.TxtStartOffset.Font = new System.Drawing.Font("Roboto", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.TxtStartOffset.Location = new System.Drawing.Point(482, 77);
+            this.TxtStartOffset.MaxLength = 6;
+            this.TxtStartOffset.Multiline = true;
+            this.TxtStartOffset.Name = "TxtStartOffset";
+            this.TxtStartOffset.Size = new System.Drawing.Size(83, 23);
+            this.TxtStartOffset.TabIndex = 12;
+            this.TxtStartOffset.Text = "1C66D0";
+            this.TxtStartOffset.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.TxtStartOffset.Visible = false;
+            this.TxtStartOffset.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValidatesHexFields);
+            this.TxtStartOffset.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ValidateOkButton);
             // 
-            // lblOffsetInicial
+            // LblStartOffset
             // 
-            this.lblOffsetInicial.AutoSize = true;
-            this.lblOffsetInicial.Font = new System.Drawing.Font("Roboto", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblOffsetInicial.Location = new System.Drawing.Point(383, 80);
-            this.lblOffsetInicial.Name = "lblOffsetInicial";
-            this.lblOffsetInicial.Size = new System.Drawing.Size(98, 18);
-            this.lblOffsetInicial.TabIndex = 13;
-            this.lblOffsetInicial.Text = "Offset inicial:";
-            this.lblOffsetInicial.Visible = false;
+            this.LblStartOffset.AutoSize = true;
+            this.LblStartOffset.Font = new System.Drawing.Font("Roboto", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.LblStartOffset.Location = new System.Drawing.Point(383, 80);
+            this.LblStartOffset.Name = "LblStartOffset";
+            this.LblStartOffset.Size = new System.Drawing.Size(94, 18);
+            this.LblStartOffset.TabIndex = 13;
+            this.LblStartOffset.Text = "Initial offset:";
+            this.LblStartOffset.Visible = false;
             // 
-            // lblOffsetFinal
+            // LblLastOffset
             // 
-            this.lblOffsetFinal.AutoSize = true;
-            this.lblOffsetFinal.Font = new System.Drawing.Font("Roboto", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblOffsetFinal.Location = new System.Drawing.Point(383, 109);
-            this.lblOffsetFinal.Name = "lblOffsetFinal";
-            this.lblOffsetFinal.Size = new System.Drawing.Size(87, 18);
-            this.lblOffsetFinal.TabIndex = 14;
-            this.lblOffsetFinal.Text = "Offset final:";
-            this.lblOffsetFinal.Visible = false;
+            this.LblLastOffset.AutoSize = true;
+            this.LblLastOffset.Font = new System.Drawing.Font("Roboto", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.LblLastOffset.Location = new System.Drawing.Point(383, 109);
+            this.LblLastOffset.Name = "LblLastOffset";
+            this.LblLastOffset.Size = new System.Drawing.Size(89, 18);
+            this.LblLastOffset.TabIndex = 14;
+            this.LblLastOffset.Text = "Final offset:";
+            this.LblLastOffset.Visible = false;
             // 
-            // txtOffsetFinal
+            // TxtLastOffset
             // 
-            this.txtOffsetFinal.Font = new System.Drawing.Font("Roboto", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtOffsetFinal.Location = new System.Drawing.Point(482, 106);
-            this.txtOffsetFinal.MaxLength = 6;
-            this.txtOffsetFinal.Multiline = true;
-            this.txtOffsetFinal.Name = "txtOffsetFinal";
-            this.txtOffsetFinal.Size = new System.Drawing.Size(83, 23);
-            this.txtOffsetFinal.TabIndex = 15;
-            this.txtOffsetFinal.Text = "1C92CB";
-            this.txtOffsetFinal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtOffsetFinal.Visible = false;
-            this.txtOffsetFinal.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValidaCamposHexadecimal);
-            this.txtOffsetFinal.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ValidaBotaoOk);
+            this.TxtLastOffset.Font = new System.Drawing.Font("Roboto", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.TxtLastOffset.Location = new System.Drawing.Point(482, 106);
+            this.TxtLastOffset.MaxLength = 6;
+            this.TxtLastOffset.Multiline = true;
+            this.TxtLastOffset.Name = "TxtLastOffset";
+            this.TxtLastOffset.Size = new System.Drawing.Size(83, 23);
+            this.TxtLastOffset.TabIndex = 15;
+            this.TxtLastOffset.Text = "1C92CB";
+            this.TxtLastOffset.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.TxtLastOffset.Visible = false;
+            this.TxtLastOffset.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValidatesHexFields);
+            this.TxtLastOffset.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ValidateOkButton);
             // 
-            // lblTitleLista
+            // LblTitleSearchCards
             // 
-            this.lblTitleLista.AutoSize = true;
-            this.lblTitleLista.BackColor = System.Drawing.Color.White;
-            this.lblTitleLista.Font = new System.Drawing.Font("Roboto", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblTitleLista.Location = new System.Drawing.Point(78, 45);
-            this.lblTitleLista.Name = "lblTitleLista";
-            this.lblTitleLista.Size = new System.Drawing.Size(176, 33);
-            this.lblTitleLista.TabIndex = 17;
-            this.lblTitleLista.Text = "Cartas atuais";
-            this.lblTitleLista.Visible = false;
+            this.LblTitleSearchCards.AutoSize = true;
+            this.LblTitleSearchCards.Font = new System.Drawing.Font("Roboto Lt", 18F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point);
+            this.LblTitleSearchCards.Location = new System.Drawing.Point(378, 37);
+            this.LblTitleSearchCards.Name = "LblTitleSearchCards";
+            this.LblTitleSearchCards.Size = new System.Drawing.Size(152, 29);
+            this.LblTitleSearchCards.TabIndex = 27;
+            this.LblTitleSearchCards.Text = "Search Cards";
+            this.LblTitleSearchCards.Visible = false;
             // 
-            // backLeftLista
+            // lblResultTitle
             // 
-            this.backLeftLista.BackColor = System.Drawing.Color.White;
-            this.backLeftLista.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.backLeftLista.Enabled = false;
-            this.backLeftLista.Location = new System.Drawing.Point(1, 86);
-            this.backLeftLista.Multiline = true;
-            this.backLeftLista.Name = "backLeftLista";
-            this.backLeftLista.Size = new System.Drawing.Size(10, 466);
-            this.backLeftLista.TabIndex = 19;
-            this.backLeftLista.Visible = false;
+            this.lblResultTitle.AutoSize = true;
+            this.lblResultTitle.Font = new System.Drawing.Font("Roboto Lt", 18F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point);
+            this.lblResultTitle.Location = new System.Drawing.Point(378, 291);
+            this.lblResultTitle.Name = "lblResultTitle";
+            this.lblResultTitle.Size = new System.Drawing.Size(91, 29);
+            this.lblResultTitle.TabIndex = 28;
+            this.lblResultTitle.Text = "Results";
+            this.lblResultTitle.Visible = false;
             // 
-            // backBottomLista
+            // BtnSearchCards
             // 
-            this.backBottomLista.BackColor = System.Drawing.Color.White;
-            this.backBottomLista.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.backBottomLista.Enabled = false;
-            this.backBottomLista.Location = new System.Drawing.Point(11, 547);
-            this.backBottomLista.Multiline = true;
-            this.backBottomLista.Name = "backBottomLista";
-            this.backBottomLista.Size = new System.Drawing.Size(321, 5);
-            this.backBottomLista.TabIndex = 21;
-            this.backBottomLista.Visible = false;
-            // 
-            // borderRightLista
-            // 
-            this.borderRightLista.BackColor = System.Drawing.Color.Black;
-            this.borderRightLista.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.borderRightLista.Enabled = false;
-            this.borderRightLista.Location = new System.Drawing.Point(347, 37);
-            this.borderRightLista.Multiline = true;
-            this.borderRightLista.Name = "borderRightLista";
-            this.borderRightLista.Size = new System.Drawing.Size(1, 515);
-            this.borderRightLista.TabIndex = 22;
-            this.borderRightLista.Visible = false;
-            // 
-            // borderTopLista
-            // 
-            this.borderTopLista.BackColor = System.Drawing.Color.Black;
-            this.borderTopLista.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.borderTopLista.Enabled = false;
-            this.borderTopLista.Location = new System.Drawing.Point(0, 37);
-            this.borderTopLista.Multiline = true;
-            this.borderTopLista.Name = "borderTopLista";
-            this.borderTopLista.Size = new System.Drawing.Size(347, 1);
-            this.borderTopLista.TabIndex = 23;
-            this.borderTopLista.Visible = false;
-            // 
-            // backTitleLista
-            // 
-            this.backTitleLista.BackColor = System.Drawing.Color.White;
-            this.backTitleLista.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.backTitleLista.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.backTitleLista.Enabled = false;
-            this.backTitleLista.Location = new System.Drawing.Point(1, 37);
-            this.backTitleLista.Multiline = true;
-            this.backTitleLista.Name = "backTitleLista";
-            this.backTitleLista.ReadOnly = true;
-            this.backTitleLista.Size = new System.Drawing.Size(346, 60);
-            this.backTitleLista.TabIndex = 24;
-            this.backTitleLista.Visible = false;
-            // 
-            // borderBottomTitleLista
-            // 
-            this.borderBottomTitleLista.BackColor = System.Drawing.Color.Black;
-            this.borderBottomTitleLista.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.borderBottomTitleLista.Enabled = false;
-            this.borderBottomTitleLista.Location = new System.Drawing.Point(0, 85);
-            this.borderBottomTitleLista.Multiline = true;
-            this.borderBottomTitleLista.Name = "borderBottomTitleLista";
-            this.borderBottomTitleLista.Size = new System.Drawing.Size(347, 1);
-            this.borderBottomTitleLista.TabIndex = 25;
-            this.borderBottomTitleLista.Visible = false;
-            // 
-            // backTopScroll
-            // 
-            this.backTopScroll.BackColor = System.Drawing.SystemColors.Control;
-            this.backTopScroll.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.backTopScroll.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.backTopScroll.Enabled = false;
-            this.backTopScroll.Location = new System.Drawing.Point(332, 86);
-            this.backTopScroll.Multiline = true;
-            this.backTopScroll.Name = "backTopScroll";
-            this.backTopScroll.ReadOnly = true;
-            this.backTopScroll.Size = new System.Drawing.Size(14, 12);
-            this.backTopScroll.TabIndex = 26;
-            this.backTopScroll.Visible = false;
-            // 
-            // lblTitleBuscar
-            // 
-            this.lblTitleBuscar.AutoSize = true;
-            this.lblTitleBuscar.Font = new System.Drawing.Font("Roboto Lt", 18F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point);
-            this.lblTitleBuscar.Location = new System.Drawing.Point(378, 37);
-            this.lblTitleBuscar.Name = "lblTitleBuscar";
-            this.lblTitleBuscar.Size = new System.Drawing.Size(158, 29);
-            this.lblTitleBuscar.TabIndex = 27;
-            this.lblTitleBuscar.Text = "Buscar cartas";
-            this.lblTitleBuscar.Visible = false;
-            // 
-            // lblTitleResultados
-            // 
-            this.lblTitleResultados.AutoSize = true;
-            this.lblTitleResultados.Font = new System.Drawing.Font("Roboto Lt", 18F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point);
-            this.lblTitleResultados.Location = new System.Drawing.Point(378, 291);
-            this.lblTitleResultados.Name = "lblTitleResultados";
-            this.lblTitleResultados.Size = new System.Drawing.Size(135, 29);
-            this.lblTitleResultados.TabIndex = 28;
-            this.lblTitleResultados.Text = "Resultados:";
-            this.lblTitleResultados.Visible = false;
-            // 
-            // backBottomScroll
-            // 
-            this.backBottomScroll.BackColor = System.Drawing.SystemColors.Control;
-            this.backBottomScroll.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.backBottomScroll.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.backBottomScroll.Enabled = false;
-            this.backBottomScroll.Location = new System.Drawing.Point(332, 542);
-            this.backBottomScroll.Multiline = true;
-            this.backBottomScroll.Name = "backBottomScroll";
-            this.backBottomScroll.ReadOnly = true;
-            this.backBottomScroll.Size = new System.Drawing.Size(15, 10);
-            this.backBottomScroll.TabIndex = 34;
-            this.backBottomScroll.Visible = false;
-            // 
-            // BtnBuscar
-            // 
-            this.BtnBuscar.BackColor = System.Drawing.Color.LightGreen;
-            this.BtnBuscar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BtnBuscar.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray;
-            this.BtnBuscar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LimeGreen;
-            this.BtnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnBuscar.Font = new System.Drawing.Font("Roboto", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.BtnBuscar.Location = new System.Drawing.Point(460, 144);
-            this.BtnBuscar.Margin = new System.Windows.Forms.Padding(0);
-            this.BtnBuscar.Name = "BtnBuscar";
-            this.BtnBuscar.Size = new System.Drawing.Size(105, 29);
-            this.BtnBuscar.TabIndex = 16;
-            this.BtnBuscar.Text = "Ok";
-            this.BtnBuscar.UseVisualStyleBackColor = false;
-            this.BtnBuscar.Visible = false;
-            this.BtnBuscar.Click += new System.EventHandler(this.BtnBuscar_Click);
+            this.BtnSearchCards.BackColor = System.Drawing.Color.LightGreen;
+            this.BtnSearchCards.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnSearchCards.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray;
+            this.BtnSearchCards.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LimeGreen;
+            this.BtnSearchCards.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnSearchCards.Font = new System.Drawing.Font("Roboto", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.BtnSearchCards.Location = new System.Drawing.Point(460, 144);
+            this.BtnSearchCards.Margin = new System.Windows.Forms.Padding(0);
+            this.BtnSearchCards.Name = "BtnSearchCards";
+            this.BtnSearchCards.Size = new System.Drawing.Size(105, 29);
+            this.BtnSearchCards.TabIndex = 16;
+            this.BtnSearchCards.Text = "Search";
+            this.BtnSearchCards.UseVisualStyleBackColor = false;
+            this.BtnSearchCards.Visible = false;
+            this.BtnSearchCards.Click += new System.EventHandler(this.BtnSearch_Click);
             // 
             // textBox1
             // 
@@ -545,16 +411,16 @@ namespace AlteraPonteiro
             this.textBox8.TabIndex = 41;
             this.textBox8.Visible = false;
             // 
-            // lblTitleNewCard
+            // LblTitleNewCard
             // 
-            this.lblTitleNewCard.AutoSize = true;
-            this.lblTitleNewCard.Font = new System.Drawing.Font("Roboto Lt", 18F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point);
-            this.lblTitleNewCard.Location = new System.Drawing.Point(797, 37);
-            this.lblTitleNewCard.Name = "lblTitleNewCard";
-            this.lblTitleNewCard.Size = new System.Drawing.Size(227, 29);
-            this.lblTitleNewCard.TabIndex = 50;
-            this.lblTitleNewCard.Text = "Buscar cartas novas";
-            this.lblTitleNewCard.Visible = false;
+            this.LblTitleNewCard.AutoSize = true;
+            this.LblTitleNewCard.Font = new System.Drawing.Font("Roboto Lt", 18F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point);
+            this.LblTitleNewCard.Location = new System.Drawing.Point(819, 37);
+            this.LblTitleNewCard.Name = "LblTitleNewCard";
+            this.LblTitleNewCard.Size = new System.Drawing.Size(198, 29);
+            this.LblTitleNewCard.TabIndex = 50;
+            this.LblTitleNewCard.Text = "Search new cards";
+            this.LblTitleNewCard.Visible = false;
             // 
             // BtnSearchNewCard
             // 
@@ -569,94 +435,94 @@ namespace AlteraPonteiro
             this.BtnSearchNewCard.Name = "BtnSearchNewCard";
             this.BtnSearchNewCard.Size = new System.Drawing.Size(105, 29);
             this.BtnSearchNewCard.TabIndex = 49;
-            this.BtnSearchNewCard.Text = "Trocar";
+            this.BtnSearchNewCard.Text = "Switch";
             this.BtnSearchNewCard.UseVisualStyleBackColor = false;
             this.BtnSearchNewCard.Visible = false;
             this.BtnSearchNewCard.Click += new System.EventHandler(this.BtnSearchNewCard_Click);
             // 
-            // txtLastOffsetNewCard
+            // TxtLastOffsetNewCard
             // 
-            this.txtLastOffsetNewCard.Font = new System.Drawing.Font("Roboto", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtLastOffsetNewCard.Location = new System.Drawing.Point(929, 109);
-            this.txtLastOffsetNewCard.MaxLength = 6;
-            this.txtLastOffsetNewCard.Multiline = true;
-            this.txtLastOffsetNewCard.Name = "txtLastOffsetNewCard";
-            this.txtLastOffsetNewCard.Size = new System.Drawing.Size(83, 23);
-            this.txtLastOffsetNewCard.TabIndex = 48;
-            this.txtLastOffsetNewCard.Text = "1C99B1";
-            this.txtLastOffsetNewCard.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtLastOffsetNewCard.Visible = false;
+            this.TxtLastOffsetNewCard.Font = new System.Drawing.Font("Roboto", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.TxtLastOffsetNewCard.Location = new System.Drawing.Point(929, 109);
+            this.TxtLastOffsetNewCard.MaxLength = 6;
+            this.TxtLastOffsetNewCard.Multiline = true;
+            this.TxtLastOffsetNewCard.Name = "TxtLastOffsetNewCard";
+            this.TxtLastOffsetNewCard.Size = new System.Drawing.Size(83, 23);
+            this.TxtLastOffsetNewCard.TabIndex = 48;
+            this.TxtLastOffsetNewCard.Text = "1C99B1";
+            this.TxtLastOffsetNewCard.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.TxtLastOffsetNewCard.Visible = false;
             // 
-            // lblLastOffsetNewCard
+            // LblLastOffsetNewCard
             // 
-            this.lblLastOffsetNewCard.AutoSize = true;
-            this.lblLastOffsetNewCard.Font = new System.Drawing.Font("Roboto", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblLastOffsetNewCard.Location = new System.Drawing.Point(830, 112);
-            this.lblLastOffsetNewCard.Name = "lblLastOffsetNewCard";
-            this.lblLastOffsetNewCard.Size = new System.Drawing.Size(87, 18);
-            this.lblLastOffsetNewCard.TabIndex = 47;
-            this.lblLastOffsetNewCard.Text = "Offset final:";
-            this.lblLastOffsetNewCard.Visible = false;
+            this.LblLastOffsetNewCard.AutoSize = true;
+            this.LblLastOffsetNewCard.Font = new System.Drawing.Font("Roboto", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.LblLastOffsetNewCard.Location = new System.Drawing.Point(830, 112);
+            this.LblLastOffsetNewCard.Name = "LblLastOffsetNewCard";
+            this.LblLastOffsetNewCard.Size = new System.Drawing.Size(85, 18);
+            this.LblLastOffsetNewCard.TabIndex = 47;
+            this.LblLastOffsetNewCard.Text = "Final offset";
+            this.LblLastOffsetNewCard.Visible = false;
             // 
-            // lblStartOffsetNewCard
+            // LblStartOffsetNewCard
             // 
-            this.lblStartOffsetNewCard.AutoSize = true;
-            this.lblStartOffsetNewCard.Font = new System.Drawing.Font("Roboto", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblStartOffsetNewCard.Location = new System.Drawing.Point(830, 83);
-            this.lblStartOffsetNewCard.Name = "lblStartOffsetNewCard";
-            this.lblStartOffsetNewCard.Size = new System.Drawing.Size(98, 18);
-            this.lblStartOffsetNewCard.TabIndex = 46;
-            this.lblStartOffsetNewCard.Text = "Offset inicial:";
-            this.lblStartOffsetNewCard.Visible = false;
+            this.LblStartOffsetNewCard.AutoSize = true;
+            this.LblStartOffsetNewCard.Font = new System.Drawing.Font("Roboto", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.LblStartOffsetNewCard.Location = new System.Drawing.Point(830, 83);
+            this.LblStartOffsetNewCard.Name = "LblStartOffsetNewCard";
+            this.LblStartOffsetNewCard.Size = new System.Drawing.Size(90, 18);
+            this.LblStartOffsetNewCard.TabIndex = 46;
+            this.LblStartOffsetNewCard.Text = "Initial offset";
+            this.LblStartOffsetNewCard.Visible = false;
             // 
-            // txtStartOffsetNewCard
+            // TxtStartOffsetNewCard
             // 
-            this.txtStartOffsetNewCard.Font = new System.Drawing.Font("Roboto", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtStartOffsetNewCard.Location = new System.Drawing.Point(929, 80);
-            this.txtStartOffsetNewCard.MaxLength = 6;
-            this.txtStartOffsetNewCard.Multiline = true;
-            this.txtStartOffsetNewCard.Name = "txtStartOffsetNewCard";
-            this.txtStartOffsetNewCard.Size = new System.Drawing.Size(83, 23);
-            this.txtStartOffsetNewCard.TabIndex = 45;
-            this.txtStartOffsetNewCard.Text = "1C9991";
-            this.txtStartOffsetNewCard.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtStartOffsetNewCard.Visible = false;
+            this.TxtStartOffsetNewCard.Font = new System.Drawing.Font("Roboto", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.TxtStartOffsetNewCard.Location = new System.Drawing.Point(929, 80);
+            this.TxtStartOffsetNewCard.MaxLength = 6;
+            this.TxtStartOffsetNewCard.Multiline = true;
+            this.TxtStartOffsetNewCard.Name = "TxtStartOffsetNewCard";
+            this.TxtStartOffsetNewCard.Size = new System.Drawing.Size(83, 23);
+            this.TxtStartOffsetNewCard.TabIndex = 45;
+            this.TxtStartOffsetNewCard.Text = "1C9991";
+            this.TxtStartOffsetNewCard.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.TxtStartOffsetNewCard.Visible = false;
             // 
-            // lblResultNewCard
+            // LblResultNewCard
             // 
-            this.lblResultNewCard.AutoSize = true;
-            this.lblResultNewCard.Font = new System.Drawing.Font("Roboto Lt", 18F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point);
-            this.lblResultNewCard.Location = new System.Drawing.Point(797, 291);
-            this.lblResultNewCard.Name = "lblResultNewCard";
-            this.lblResultNewCard.Size = new System.Drawing.Size(135, 29);
-            this.lblResultNewCard.TabIndex = 56;
-            this.lblResultNewCard.Text = "Resultados:";
-            this.lblResultNewCard.Visible = false;
+            this.LblResultNewCard.AutoSize = true;
+            this.LblResultNewCard.Font = new System.Drawing.Font("Roboto Lt", 18F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point);
+            this.LblResultNewCard.Location = new System.Drawing.Point(839, 291);
+            this.LblResultNewCard.Name = "LblResultNewCard";
+            this.LblResultNewCard.Size = new System.Drawing.Size(91, 29);
+            this.LblResultNewCard.TabIndex = 56;
+            this.LblResultNewCard.Text = "Results";
+            this.LblResultNewCard.Visible = false;
             // 
-            // lblPointerCard
+            // LblPointerCard
             // 
-            this.lblPointerCard.AutoSize = true;
-            this.lblPointerCard.Font = new System.Drawing.Font("Roboto", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblPointerCard.Location = new System.Drawing.Point(802, 362);
-            this.lblPointerCard.Name = "lblPointerCard";
-            this.lblPointerCard.Size = new System.Drawing.Size(130, 18);
-            this.lblPointerCard.TabIndex = 55;
-            this.lblPointerCard.Text = "Ponteiro da carta:";
-            this.lblPointerCard.Visible = false;
+            this.LblPointerCard.AutoSize = true;
+            this.LblPointerCard.Font = new System.Drawing.Font("Roboto", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.LblPointerCard.Location = new System.Drawing.Point(840, 362);
+            this.LblPointerCard.Name = "LblPointerCard";
+            this.LblPointerCard.Size = new System.Drawing.Size(92, 18);
+            this.LblPointerCard.TabIndex = 55;
+            this.LblPointerCard.Text = "Card pointer";
+            this.LblPointerCard.Visible = false;
             // 
-            // txtPointerNewCard
+            // TxtPointerNewCard
             // 
-            this.txtPointerNewCard.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtPointerNewCard.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtPointerNewCard.Font = new System.Drawing.Font("Roboto", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtPointerNewCard.Location = new System.Drawing.Point(935, 360);
-            this.txtPointerNewCard.Multiline = true;
-            this.txtPointerNewCard.Name = "txtPointerNewCard";
-            this.txtPointerNewCard.ReadOnly = true;
-            this.txtPointerNewCard.Size = new System.Drawing.Size(83, 23);
-            this.txtPointerNewCard.TabIndex = 54;
-            this.txtPointerNewCard.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtPointerNewCard.Visible = false;
+            this.TxtPointerNewCard.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.TxtPointerNewCard.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.TxtPointerNewCard.Font = new System.Drawing.Font("Roboto", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.TxtPointerNewCard.Location = new System.Drawing.Point(935, 360);
+            this.TxtPointerNewCard.Multiline = true;
+            this.TxtPointerNewCard.Name = "TxtPointerNewCard";
+            this.TxtPointerNewCard.ReadOnly = true;
+            this.TxtPointerNewCard.Size = new System.Drawing.Size(83, 23);
+            this.TxtPointerNewCard.TabIndex = 54;
+            this.TxtPointerNewCard.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.TxtPointerNewCard.Visible = false;
             // 
             // label8
             // 
@@ -666,28 +532,28 @@ namespace AlteraPonteiro
             this.label8.Size = new System.Drawing.Size(0, 15);
             this.label8.TabIndex = 53;
             // 
-            // lblOffsetNewCard
+            // LblOffsetNewCard
             // 
-            this.lblOffsetNewCard.AutoSize = true;
-            this.lblOffsetNewCard.Font = new System.Drawing.Font("Roboto", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblOffsetNewCard.Location = new System.Drawing.Point(802, 334);
-            this.lblOffsetNewCard.Name = "lblOffsetNewCard";
-            this.lblOffsetNewCard.Size = new System.Drawing.Size(112, 18);
-            this.lblOffsetNewCard.TabIndex = 52;
-            this.lblOffsetNewCard.Text = "Offset da carta:";
-            this.lblOffsetNewCard.Visible = false;
+            this.LblOffsetNewCard.AutoSize = true;
+            this.LblOffsetNewCard.Font = new System.Drawing.Font("Roboto", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.LblOffsetNewCard.Location = new System.Drawing.Point(840, 334);
+            this.LblOffsetNewCard.Name = "LblOffsetNewCard";
+            this.LblOffsetNewCard.Size = new System.Drawing.Size(83, 18);
+            this.LblOffsetNewCard.TabIndex = 52;
+            this.LblOffsetNewCard.Text = "Card offset";
+            this.LblOffsetNewCard.Visible = false;
             // 
-            // txtOffsetNewCard
+            // TxtOffsetNewCard
             // 
-            this.txtOffsetNewCard.Font = new System.Drawing.Font("Roboto", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtOffsetNewCard.Location = new System.Drawing.Point(935, 331);
-            this.txtOffsetNewCard.Multiline = true;
-            this.txtOffsetNewCard.Name = "txtOffsetNewCard";
-            this.txtOffsetNewCard.ReadOnly = true;
-            this.txtOffsetNewCard.Size = new System.Drawing.Size(83, 23);
-            this.txtOffsetNewCard.TabIndex = 51;
-            this.txtOffsetNewCard.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtOffsetNewCard.Visible = false;
+            this.TxtOffsetNewCard.Font = new System.Drawing.Font("Roboto", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.TxtOffsetNewCard.Location = new System.Drawing.Point(935, 331);
+            this.TxtOffsetNewCard.Multiline = true;
+            this.TxtOffsetNewCard.Name = "TxtOffsetNewCard";
+            this.TxtOffsetNewCard.ReadOnly = true;
+            this.TxtOffsetNewCard.Size = new System.Drawing.Size(83, 23);
+            this.TxtOffsetNewCard.TabIndex = 51;
+            this.TxtOffsetNewCard.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.TxtOffsetNewCard.Visible = false;
             // 
             // arquivoToolStripMenuItem
             // 
@@ -703,14 +569,14 @@ namespace AlteraPonteiro
             this.abrirToolStripMenuItem.Name = "abrirToolStripMenuItem";
             this.abrirToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.abrirToolStripMenuItem.Text = "&Abrir";
-            this.abrirToolStripMenuItem.Click += new System.EventHandler(this.AbrirToolStripMenuItem_Click);
+            this.abrirToolStripMenuItem.Click += new System.EventHandler(this.OpenToolStripMenuItem_Click);
             // 
             // SairToolStripMenuItem
             // 
             this.SairToolStripMenuItem.Name = "SairToolStripMenuItem";
             this.SairToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.SairToolStripMenuItem.Text = "&Sair";
-            this.SairToolStripMenuItem.Click += new System.EventHandler(this.SairToolStripMenuItem_Click);
+            this.SairToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
             // 
             // AboutToolStripMenuItem
             // 
@@ -731,24 +597,52 @@ namespace AlteraPonteiro
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
+            // lListCardsView
+            // 
+            this.lListCardsView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.id,
+            this.Name});
+            this.lListCardsView.Font = new System.Drawing.Font("Roboto", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lListCardsView.FullRowSelect = true;
+            this.lListCardsView.GridLines = true;
+            this.lListCardsView.HideSelection = false;
+            this.lListCardsView.Location = new System.Drawing.Point(0, 27);
+            this.lListCardsView.Name = "lListCardsView";
+            this.lListCardsView.Size = new System.Drawing.Size(350, 530);
+            this.lListCardsView.TabIndex = 57;
+            this.lListCardsView.UseCompatibleStateImageBehavior = false;
+            this.lListCardsView.View = System.Windows.Forms.View.Details;
+            this.lListCardsView.SelectedIndexChanged += new System.EventHandler(this.ListCardsView_SelectedIndexChanged);
+            // 
+            // id
+            // 
+            this.id.Text = "ID";
+            this.id.Width = 50;
+            // 
+            // Name
+            // 
+            this.Name.Text = "Name";
+            this.Name.Width = 275;
+            // 
             // FormCurrentCards
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.ClientSize = new System.Drawing.Size(1377, 552);
-            this.Controls.Add(this.lblResultNewCard);
-            this.Controls.Add(this.lblPointerCard);
-            this.Controls.Add(this.txtPointerNewCard);
+            this.Controls.Add(this.lListCardsView);
+            this.Controls.Add(this.LblResultNewCard);
+            this.Controls.Add(this.LblPointerCard);
+            this.Controls.Add(this.TxtPointerNewCard);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.lblOffsetNewCard);
-            this.Controls.Add(this.txtOffsetNewCard);
-            this.Controls.Add(this.lblTitleNewCard);
+            this.Controls.Add(this.LblOffsetNewCard);
+            this.Controls.Add(this.TxtOffsetNewCard);
+            this.Controls.Add(this.LblTitleNewCard);
             this.Controls.Add(this.BtnSearchNewCard);
-            this.Controls.Add(this.txtLastOffsetNewCard);
-            this.Controls.Add(this.lblLastOffsetNewCard);
-            this.Controls.Add(this.lblStartOffsetNewCard);
-            this.Controls.Add(this.txtStartOffsetNewCard);
+            this.Controls.Add(this.TxtLastOffsetNewCard);
+            this.Controls.Add(this.LblLastOffsetNewCard);
+            this.Controls.Add(this.LblStartOffsetNewCard);
+            this.Controls.Add(this.TxtStartOffsetNewCard);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox3);
@@ -759,36 +653,25 @@ namespace AlteraPonteiro
             this.Controls.Add(this.lblNewCards);
             this.Controls.Add(this.lListNewCards);
             this.Controls.Add(this.textBox8);
-            this.Controls.Add(this.backBottomScroll);
-            this.Controls.Add(this.lblTitleResultados);
-            this.Controls.Add(this.lblTitleBuscar);
-            this.Controls.Add(this.backTopScroll);
-            this.Controls.Add(this.borderBottomTitleLista);
-            this.Controls.Add(this.borderTopLista);
-            this.Controls.Add(this.borderRightLista);
-            this.Controls.Add(this.backBottomLista);
-            this.Controls.Add(this.backLeftLista);
-            this.Controls.Add(this.lblTitleLista);
-            this.Controls.Add(this.BtnBuscar);
-            this.Controls.Add(this.txtOffsetFinal);
-            this.Controls.Add(this.lblOffsetFinal);
-            this.Controls.Add(this.lblOffsetInicial);
-            this.Controls.Add(this.txtOffsetInicial);
-            this.Controls.Add(this.lblPonteiroCalculado);
-            this.Controls.Add(this.txtPonteiroCalculado);
+            this.Controls.Add(this.lblResultTitle);
+            this.Controls.Add(this.LblTitleSearchCards);
+            this.Controls.Add(this.BtnSearchCards);
+            this.Controls.Add(this.TxtLastOffset);
+            this.Controls.Add(this.LblLastOffset);
+            this.Controls.Add(this.LblStartOffset);
+            this.Controls.Add(this.TxtStartOffset);
+            this.Controls.Add(this.LblCalculatedPointer);
+            this.Controls.Add(this.TxtCalculatedPointer);
             this.Controls.Add(this.lblMessageInfo);
-            this.Controls.Add(this.BtnAlterarPonteiro);
+            this.Controls.Add(this.BtnChangePointer);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.lblPonteiro);
-            this.Controls.Add(this.lblOffset);
-            this.Controls.Add(this.txtPonteiro);
-            this.Controls.Add(this.txtOffset);
-            this.Controls.Add(this.lListaDeCartas);
+            this.Controls.Add(this.LblCurrentPointer);
+            this.Controls.Add(this.LblOffset);
+            this.Controls.Add(this.TxtCurrentPointer);
+            this.Controls.Add(this.TxtOffset);
             this.Controls.Add(this.menuStrip1);
-            this.Controls.Add(this.backTitleLista);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "FormCurrentCards";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Alterar Ponteiros Yu-Gi-Oh!";
             this.menuStrip1.ResumeLayout(false);
@@ -798,33 +681,22 @@ namespace AlteraPonteiro
 
         }
         #endregion
-
-        public System.Windows.Forms.ListBox lListaDeCartas;
-        public System.Windows.Forms.TextBox txtOffset;
-        public System.Windows.Forms.TextBox txtPonteiro;
-        public System.Windows.Forms.Label lblOffset;
-        public System.Windows.Forms.Label lblPonteiro;
+        public System.Windows.Forms.TextBox TxtOffset;
+        public System.Windows.Forms.TextBox TxtCurrentPointer;
+        public System.Windows.Forms.Label LblOffset;
+        public System.Windows.Forms.Label LblCurrentPointer;
         private System.Windows.Forms.Label label3;
-        public System.Windows.Forms.Button BtnAlterarPonteiro;
+        public System.Windows.Forms.Button BtnChangePointer;
         public System.Windows.Forms.Label lblMessageInfo;
-        public System.Windows.Forms.TextBox txtPonteiroCalculado;
-        public System.Windows.Forms.Label lblPonteiroCalculado;
-        public System.Windows.Forms.TextBox txtOffsetInicial;
-        public System.Windows.Forms.Label lblOffsetInicial;
-        public System.Windows.Forms.Label lblOffsetFinal;
-        public System.Windows.Forms.TextBox txtOffsetFinal;
-        public System.Windows.Forms.Label lblTitleLista;
-        public System.Windows.Forms.TextBox backLeftLista;
-        public System.Windows.Forms.TextBox backBottomLista;
-        public System.Windows.Forms.TextBox borderRightLista;
-        public System.Windows.Forms.TextBox borderTopLista;
-        public System.Windows.Forms.TextBox backTitleLista;
-        public System.Windows.Forms.TextBox borderBottomTitleLista;
-        public System.Windows.Forms.TextBox backTopScroll;
-        public System.Windows.Forms.Label lblTitleBuscar;
-        public System.Windows.Forms.Label lblTitleResultados;
-        public System.Windows.Forms.TextBox backBottomScroll;
-        public System.Windows.Forms.Button BtnBuscar;
+        public System.Windows.Forms.TextBox TxtCalculatedPointer;
+        public System.Windows.Forms.Label LblCalculatedPointer;
+        public System.Windows.Forms.TextBox TxtStartOffset;
+        public System.Windows.Forms.Label LblStartOffset;
+        public System.Windows.Forms.Label LblLastOffset;
+        public System.Windows.Forms.TextBox TxtLastOffset;
+        public System.Windows.Forms.Label LblTitleSearchCards;
+        public System.Windows.Forms.Label lblResultTitle;
+        public System.Windows.Forms.Button BtnSearchCards;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox3;
@@ -835,23 +707,26 @@ namespace AlteraPonteiro
         public System.Windows.Forms.Label lblNewCards;
         public System.Windows.Forms.ListBox lListNewCards;
         private System.Windows.Forms.TextBox textBox8;
-        public System.Windows.Forms.Label lblTitleNewCard;
+        public System.Windows.Forms.Label LblTitleNewCard;
         public System.Windows.Forms.Button BtnSearchNewCard;
-        public System.Windows.Forms.TextBox txtLastOffsetNewCard;
-        public System.Windows.Forms.Label lblLastOffsetNewCard;
-        public System.Windows.Forms.Label lblStartOffsetNewCard;
-        public System.Windows.Forms.TextBox txtStartOffsetNewCard;
-        public System.Windows.Forms.Label lblResultNewCard;
-        public System.Windows.Forms.Label lblPointerCard;
-        public System.Windows.Forms.TextBox txtPointerNewCard;
+        public System.Windows.Forms.TextBox TxtLastOffsetNewCard;
+        public System.Windows.Forms.Label LblLastOffsetNewCard;
+        public System.Windows.Forms.Label LblStartOffsetNewCard;
+        public System.Windows.Forms.TextBox TxtStartOffsetNewCard;
+        public System.Windows.Forms.Label LblResultNewCard;
+        public System.Windows.Forms.Label LblPointerCard;
+        public System.Windows.Forms.TextBox TxtPointerNewCard;
         private System.Windows.Forms.Label label8;
-        public System.Windows.Forms.Label lblOffsetNewCard;
-        public System.Windows.Forms.TextBox txtOffsetNewCard;
+        public System.Windows.Forms.Label LblOffsetNewCard;
+        public System.Windows.Forms.TextBox TxtOffsetNewCard;
         private System.Windows.Forms.ToolStripMenuItem arquivoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem abrirToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem SairToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem AboutToolStripMenuItem;
         private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ListView lListCardsView;
+        private System.Windows.Forms.ColumnHeader id;
+        private System.Windows.Forms.ColumnHeader Name;
     }
 }
 
